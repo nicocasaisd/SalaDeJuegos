@@ -10,5 +10,5 @@ import { NavbarComponent } from './components/navbar/navbar.component';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'tp_juegos_2024';
+  title = 'tp-juegos-2024';
 }

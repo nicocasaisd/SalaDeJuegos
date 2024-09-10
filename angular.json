@@ -59,10 +59,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "tp_juegos_2024:build:production"
+              "buildTarget": "tp-juegos-2024:build:production"
             },
             "development": {
-              "buildTarget": "tp_juegos_2024:build:development"
+              "buildTarget": "tp-juegos-2024:build:development"
             }
           },
           "defaultConfiguration": "development"
