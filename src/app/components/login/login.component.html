@@ -1,1 +1,28 @@
-<p>login works!</p>
+<div class="container form-signin mt-5 rounded-3">
+  <h2>Iniciar sesión</h2>
+  <div class="form-floating">
+    <!-- <input [(ngModel)]="email"  type="email" name = "email" class="form-control" id="floatingInput" placeholder="name@example.com"> -->
+    <input
+      type="email"
+      name="email"
+      class="form-control"
+      id="floatingInput"
+      placeholder="name@example.com"
+    />
+    <label for="floatingInput">Email address</label>
+  </div>
+  <div class="form-floating">
+    <!-- <input [(ngModel)]="pass" name = "password" type="password" class="form-control" id="floatingPassword" placeholder="Password"> -->
+    <input
+      name="password"
+      type="password"
+      class="form-control"
+      id="floatingPassword"
+      placeholder="Password"
+    />
+    <label for="floatingPassword">Password</label>
+  </div>
+  <div>
+    <button class="btn btn-info">Iniciar sesión</button>
+  </div>
+</div>
