@@ -13,6 +13,7 @@ import {
 import { FormsModule } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -65,7 +66,8 @@ export class LoginComponent {
   constructor(
     private auth: Auth,
     private firestore: Firestore,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   setGlobalLoggedUser(loggedUser: string) {
@@ -87,6 +89,8 @@ export class LoginComponent {
           // Registramos el login
           this.registerLogin(this.loggedUser);
           console.log('Login exitoso.');
+          // Redirigimos a Home
+          this.router.navigate(['home']);
         }
       })
       .catch((e) => console.log('Se recibio un error : ', e.code));
