@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Auth } from '@angular/fire/auth';
+import { Auth, createUserWithEmailAndPassword } from '@angular/fire/auth';
 import { Firestore } from '@angular/fire/firestore';
 import { AuthService } from '../../services/auth.service';
 import { Router, RouterLink } from '@angular/router';
@@ -10,10 +10,9 @@ import { FormsModule } from '@angular/forms';
   standalone: true,
   imports: [FormsModule, RouterLink],
   templateUrl: './register.component.html',
-  styleUrl: './register.component.css'
+  styleUrl: './register.component.css',
 })
 export class RegisterComponent {
-
   constructor(
     private auth: Auth,
     private firestore: Firestore,
@@ -21,11 +20,54 @@ export class RegisterComponent {
     private router: Router
   ) {}
 
-  
-  userMail: string = '';
-  userPass: string = '';
+  newUserMail: string = '';
+  newUserPass: string = '';
 
-  register(){
+  loggedUser: string = '';
 
+  msjError: string = '';
+
+  setGlobalLoggedUser(loggedUser: string) {
+    this.authService.setLoggedUser(loggedUser);
+  }
+
+  getGlobalLoggedUser() {
+    console.log(this.authService.getLoggedUser());
+  }
+
+  register() {
+    createUserWithEmailAndPassword(
+      this.auth,
+      this.newUserMail,
+      this.newUserPass
+    )
+      .then((res) => {
+        if (res.user.email !== null) {
+          this.loggedUser = res.user.email;
+          this.setGlobalLoggedUser(this.loggedUser);
+          // Redirigimos a Home
+          this.router.navigate(['home']);
+        }
+      })
+      .catch((e) => {
+        console.log('Se recibio un error : ', e.code);
+        switch (e.code) {
+          case 'auth/invalid-email':
+            this.msjError = 'Email invalido.';
+            break;
+          case 'auth/email-already-in-use':
+            this.msjError = 'Email ya en uso.';
+            break;
+          case 'auth/weak-password':
+            this.msjError = 'Contraseña demasiado débil. Ingrese letras y números.';
+            break;
+          case 'auth/missing-password':
+            this.msjError = 'Ingrese una contraseña.';
+            break;
+          default:
+            this.msjError = e.code;
+            break;
+        }
+      });
   }
 }

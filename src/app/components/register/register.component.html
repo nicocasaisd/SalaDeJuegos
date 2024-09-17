@@ -2,7 +2,7 @@
   <h2>Registrarse</h2>
   <div class="form-floating">
     <input
-      [(ngModel)]="userMail"
+      [(ngModel)]="newUserMail"
       type="email"
       name="email"
       class="form-control"
@@ -11,9 +11,9 @@
     />
     <label for="floatingInput">Email address</label>
   </div>
-  <div class="form-floating">
+  <div class="form-floating is-invalid">
     <input
-      [(ngModel)]="userPass"
+      [(ngModel)]="newUserPass"
       name="password"
       type="password"
       class="form-control"
@@ -22,14 +22,19 @@
     />
     <label for="floatingPassword">Password</label>
   </div>
-      <div>
-      @if(!authService.loggedUser) {
-      <button class="btn btn-info m-2" (click)="register()">Registrarse</button>
-  
-      <p>
-        ¿Ya estás registrado?
-        <a routerLink="/login">Inicia sesión</a>
-      </p>
+  <div>
+    @if (this.msjError) {
+        <p class="mensaje-error">Error: {{this.msjError}}</p>
     }
-    </div>
+  </div>
+  <div>
+    @if(!authService.loggedUser) {
+    <button class="btn btn-info m-2" (click)="register()">Registrarse</button>
+
+    <p>
+      ¿Ya estás registrado?
+      <a routerLink="/login">Inicia sesión</a>
+    </p>
+    }
+  </div>
 </div>
