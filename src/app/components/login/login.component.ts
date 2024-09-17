@@ -23,7 +23,6 @@ import { Router, RouterLink } from '@angular/router';
   styleUrl: './login.component.css',
 })
 export class LoginComponent {
-
   loginsCollection: any[] = [];
   public user: string = '';
   countLogins: number = 0;
@@ -64,6 +63,8 @@ export class LoginComponent {
 
   loggedUser: string = '';
 
+  msjError: string = '';
+
   constructor(
     private auth: Auth,
     private firestore: Firestore,
@@ -94,7 +95,23 @@ export class LoginComponent {
           this.router.navigate(['home']);
         }
       })
-      .catch((e) => console.log('Se recibio un error : ', e.code));
+      .catch((e) => {
+        console.log('Se recibio un error : ', e.code);
+        switch (e.code) {
+          case 'auth/invalid-email':
+            this.msjError = 'Email invalido.';
+            break;
+          case 'auth/invalid-credential':
+            this.msjError = 'La contraseña es incorrecta.';
+            break;
+          case 'auth/missing-password':
+            this.msjError = 'Ingrese una contraseña.';
+            break;
+          default:
+            this.msjError = e.code;
+            break;
+        }
+      });
   }
 
   registerLogin(userMail: string) {
@@ -104,7 +121,7 @@ export class LoginComponent {
   }
 
   closeSession() {
-    console.log('Cerrando la sesión de ',this.auth.currentUser?.email);
+    console.log('Cerrando la sesión de ', this.auth.currentUser?.email);
     signOut(this.auth).then(() => {
       this.setGlobalLoggedUser('');
       console.log(this.auth.currentUser?.email);
@@ -114,5 +131,5 @@ export class LoginComponent {
   autoCompletarUsuario() {
     this.userMail = 'nico@utn.com.ar';
     this.userPass = 'nico666';
-    }
+  }
 }

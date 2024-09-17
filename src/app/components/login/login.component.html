@@ -26,6 +26,11 @@
     <label for="floatingPassword">Password</label>
   </div>
   <div>
+    @if (this.msjError) {
+        <p class="mensaje-error">Error: {{this.msjError}}</p>
+    }
+  </div>
+  <div>
     @if(!authService.loggedUser) {
     <button class="btn btn-info m-2" (click)="login()">Iniciar sesión</button>
 
