@@ -23,6 +23,7 @@ import { Router } from '@angular/router';
   styleUrl: './login.component.css',
 })
 export class LoginComponent {
+
   loginsCollection: any[] = [];
   public user: string = '';
   countLogins: number = 0;
@@ -109,4 +110,9 @@ export class LoginComponent {
       console.log(this.auth.currentUser?.email);
     });
   }
+
+  autoCompletarUsuario() {
+    this.userMail = 'nico@utn.com.ar';
+    this.userPass = 'nico666';
+    }
 }

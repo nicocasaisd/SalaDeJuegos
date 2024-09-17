@@ -28,11 +28,16 @@
   <div>
     
     @if(!authService.loggedUser) {
-      <button class="btn btn-info" (click)="login()">Iniciar sesión</button>
+      <button class="btn btn-info m-2" (click)="login()">Iniciar sesión</button>
+
+      <button class="btn btn-info m-2" (click)="autoCompletarUsuario()"> Autocompletar Usuario 1</button>
+    }
+      <!--     
+    
     } @else {
       <h3>Usuario logueado: {{authService.loggedUser}}</h3>
       <button class="btn btn-info" (click)="closeSession()">Cerrar sesión</button>
-    }
+    } -->
       
     <!-- <button class="btn btn-info" (click)="getData()">Obtener Registros</button> -->
   </div>
