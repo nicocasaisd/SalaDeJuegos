@@ -61,7 +61,7 @@
           </a>
           <ul class="dropdown-menu">
             <li>
-              <a class="dropdown-item" href="#">Cerrar sesión</a>
+              <button class="dropdown-item" (click)="this.authService.logOut()">Cerrar sesión</button>
             </li>
           </ul>
         </li>
