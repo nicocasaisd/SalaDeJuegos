@@ -66,7 +66,7 @@ export class LoginComponent {
   constructor(
     private auth: Auth,
     private firestore: Firestore,
-    private authService: AuthService,
+    public authService: AuthService,
     private router: Router
   ) {}
 
@@ -102,8 +102,10 @@ export class LoginComponent {
     console.log('Login registrado');
   }
 
-  CloseSession() {
+  closeSession() {
+    console.log('Cerrando la sesión de ',this.auth.currentUser?.email);
     signOut(this.auth).then(() => {
+      this.setGlobalLoggedUser('');
       console.log(this.auth.currentUser?.email);
     });
   }

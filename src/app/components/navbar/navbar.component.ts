@@ -8,8 +8,8 @@ import { Subscription } from 'rxjs';
   standalone: true,
   imports: [RouterOutlet, RouterLink, RouterLinkActive],
   templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.css'
+  styleUrl: './navbar.component.css',
 })
 export class NavbarComponent {
-
+  constructor(public authService: AuthService) {}
 }

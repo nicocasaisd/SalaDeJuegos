@@ -26,7 +26,14 @@
     <label for="floatingPassword">Password</label>
   </div>
   <div>
-    <button class="btn btn-info" (click)="login()">Iniciar sesión</button>
+    
+    @if(!authService.loggedUser) {
+      <button class="btn btn-info" (click)="login()">Iniciar sesión</button>
+    } @else {
+      <h3>Usuario logueado: {{authService.loggedUser}}</h3>
+      <button class="btn btn-info" (click)="closeSession()">Cerrar sesión</button>
+    }
+      
     <!-- <button class="btn btn-info" (click)="getData()">Obtener Registros</button> -->
   </div>
 </div>
