@@ -57,14 +57,16 @@ export class LoginComponent {
 
   // Login With Auth
 
-  
-
   userMail: string = '';
   userPass: string = '';
 
   loggedUser: string = '';
 
-  constructor(public auth: Auth, public authService: AuthService) {}
+  constructor(
+    private auth: Auth,
+    private firestore: Firestore,
+    private authService: AuthService
+  ) {}
 
   setGlobalLoggedUser(loggedUser: string) {
     this.authService.setLoggedUser(loggedUser);
@@ -82,10 +84,18 @@ export class LoginComponent {
         if (res.user.email !== null) {
           this.loggedUser = res.user.email;
           this.setGlobalLoggedUser(this.loggedUser);
+          // Registramos el login
+          this.registerLogin(this.loggedUser);
+          console.log('Login exitoso.');
         }
-        console.log('Login exitoso.');
       })
       .catch((e) => console.log('Se recibio un error : ', e.code));
+  }
+
+  registerLogin(userMail: string) {
+    let col = collection(this.firestore, 'logins');
+    addDoc(col, { fecha: new Date(), user: userMail });
+    console.log('Login registrado');
   }
 
   CloseSession() {
