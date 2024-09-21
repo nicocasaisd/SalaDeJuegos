@@ -43,12 +43,22 @@
           <a
             class="nav-link active"
             aria-current="page"
+            routerLink="/chat"
+            routerLinkActive="active-route"
+            >Chat</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link active"
+            aria-current="page"
             routerLink="/login"
             routerLinkActive="active-route"
             >Login</a
           >
         </li>
         } @if (this.authService.loggedUser) {
+
         <li class="nav-item dropdown ms-auto">
           <a
             class="nav-link dropdown-toggle"
@@ -61,13 +71,12 @@
           </a>
           <ul class="dropdown-menu">
             <li>
-              <button class="dropdown-item" (click)="this.authService.logOut()">Cerrar sesión</button>
+              <button class="dropdown-item" (click)="this.authService.logOut()">
+                Cerrar sesión
+              </button>
             </li>
           </ul>
         </li>
-        <!-- <button class="btn btn-primary ms-auto">
-        
-      </button> -->
         }
       </ul>
     </div>
