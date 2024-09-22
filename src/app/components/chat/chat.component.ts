@@ -20,7 +20,7 @@ export class ChatComponent implements OnInit{
   
   ngOnInit(): void {
     // Inicializo sender
-    this.sender = this.auth.getLoggedUser();
+    //this.sender = this.auth.getLoggedUser();
     const temp = this.chatService.getMessages();
     console.log('Temp: ', temp);
     // Llamo al chat service
