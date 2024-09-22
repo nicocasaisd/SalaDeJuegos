@@ -14,7 +14,6 @@ export class BtnSalirComponent {
   constructor(private router : Router, private juegosService : JuegosService){}
   
   salir() {
-    this.juegosService.setModuleLoaded(false);
     this.router.navigate(['/home']);
   }
 }
