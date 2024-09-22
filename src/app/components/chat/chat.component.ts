@@ -23,7 +23,7 @@ export class ChatComponent implements OnInit{
   
   ngOnInit(): void {
     // Inicializo sender
-    //this.sender = this.auth.getLoggedUser();
+    this.sender = this.auth.getLoggedUser();
     //const temp = this.chatService.getMessages();
     this.messages = this.chatService.getMessages();
     //console.log('Temp: ', temp);
@@ -42,7 +42,7 @@ export class ChatComponent implements OnInit{
         
       });
     }
-    this.newMessage = ''; // Clear input after sending
+    this.newMessage = ''; // Limpiamos el input
   }
 
   ngAfterViewChecked() {

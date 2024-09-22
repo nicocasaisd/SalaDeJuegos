@@ -39,15 +39,7 @@
 
       <ul class="navbar-nav ms-auto">
         @if (!this.authService.loggedUser) {
-        <li class="nav-item">
-          <a
-            class="nav-link active"
-            aria-current="page"
-            routerLink="/chat"
-            routerLinkActive="active-route"
-            >Chat</a
-          >
-        </li>
+
         <li class="nav-item">
           <a
             class="nav-link active"
@@ -58,7 +50,15 @@
           >
         </li>
         } @if (this.authService.loggedUser) {
-
+        <li class="nav-item">
+          <a
+            class="nav-link active"
+            aria-current="page"
+            routerLink="/chat"
+            routerLinkActive="active-route"
+            >Chat</a
+          >
+        </li>
         <li class="nav-item dropdown ms-auto">
           <a
             class="nav-link dropdown-toggle"
