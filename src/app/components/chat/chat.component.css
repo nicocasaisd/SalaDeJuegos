@@ -1,0 +1,57 @@
+.contenedor-principal{
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.8);
+    width: 80%;
+    height: 80%;
+    margin: auto;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.contenedor-messages{
+    height: 90%;
+    overflow-y: auto;
+}
+
+.contenedor-input{
+    height: 10%;
+
+}
+
+
+.message{
+    background-color: rgba(212, 123, 220, 0.8);
+    margin: 10px;
+    padding: 10px;
+    width: max-content;
+    border-radius: 10px;
+}
+
+
+.message-date{
+    color: rgb(167, 84, 160);
+}
+
+.message-input{
+    margin-top: 0px;
+    margin-left: 20px;
+    /*position: absolute;
+    /*bottom: 0;  This docks the element at the bottom of the container */
+    width: 100%;  /*Make it span the full width if desired */
+    /*background-color: lightgray; /* Optional styling */
+    /*padding: 10px;
+    /*text-align: center;*/
+}
+
+.chat-input{
+    width: 80%;
+    height: 40px;
+    margin-right: 10px;
+    border-radius: 5px;
+}
+
+hr{
+    height: 2px;
+}

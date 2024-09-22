@@ -1,1 +1,26 @@
-<p>chat works!</p>
+<div class="container mt-5 rounded-5 contenedor-principal">
+  <div class="contenedor-messages">
+    <div class="message" *ngFor="let message of messages">
+      <strong>{{ message.sender }}:</strong> {{ message.message }} <br />
+      <small class="message-date">{{
+        message.timestamp.toDate() | date : "dd/MM/yyyy hh:mm a"
+      }}</small>
+    </div>
+  </div>
+
+  <hr />
+  <div class="contenedor-input">
+    <div class="message-input">
+      <form (ngSubmit)="sendMessage()">
+        <input
+          name="inputForm"
+          class="chat-input"
+          type="text"
+          [(ngModel)]="newMessage"
+          placeholder="Ingrese su mensaje"
+        />
+        <button type="submit" class="btn btn-primary">Enviar</button>
+      </form>
+    </div>
+  </div>
+</div>
