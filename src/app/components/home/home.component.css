@@ -13,3 +13,7 @@
     width: 200px;
     border-radius: 10px;
 }
+
+.card{
+    background-color:rgba(71, 63, 237, 0.5);
+}
