@@ -1,21 +1,21 @@
 <div class="container mt-5 rounded-5 contenedor-principal">
   <div class="row">
-    <div class="card mb-3 col-auto m-3" style="max-width: 18rem">
+    <div [routerLink]="['/login']" class="card mb-3 col-auto m-3" style="max-width: 18rem; cursor: pointer;">
       <div class="card-header">Mayor ó Menor</div>
       <div class="card-body">
-        <img src="cards.png" alt="" />
+        <img src="cards.png" alt="Mayor ó Menor" />
       </div>
     </div>
-    <div class="card mb-3 col-auto m-3" style="max-width: 18rem">
+    <div [routerLink]="['/login']" class="card mb-3 col-auto m-3" style="max-width: 18rem; cursor: pointer;">
       <div class="card-header">Ahorcado</div>
       <div class="card-body">
-        <img src="hangman.png" alt="" />
+        <img src="hangman.png" alt="Ahorcado" />
       </div>
     </div>
-    <div class="card mb-3 col-auto m-3" style="max-width: 18rem">
+    <div [routerLink]="['/login']" class="card mb-3 col-auto m-3" style="max-width: 18rem; cursor: pointer;">
       <div class="card-header">Preguntados</div>
       <div class="card-body">
-        <img src="question.png" alt="" />
+        <img src="question.png" alt="Preguntados" />
       </div>
     </div>
   </div>
