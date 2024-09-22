@@ -31,6 +31,7 @@ export class ChatComponent implements OnInit{
     this.messages.subscribe( () => {
       //this.messages = messages;
       //console.log('Messages: ', messages);
+      setTimeout(()=>this.scrollToBottom(), 100);
       
     })
   }
@@ -46,7 +47,7 @@ export class ChatComponent implements OnInit{
   }
 
   ngAfterViewChecked() {
-    setTimeout(()=>this.scrollToBottom(), 100);
+    //setTimeout(()=>this.scrollToBottom(), 100);
     
   }
 
