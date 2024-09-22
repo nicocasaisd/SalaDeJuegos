@@ -1,6 +1,6 @@
 <div class="container mt-5 rounded-5 contenedor-principal">
-  <div class="contenedor-messages">
-    <div class="message" *ngFor="let message of messages">
+  <div class="contenedor-messages" #messagesContainer>
+    <div class="message" *ngFor="let message of messages | async">
       <strong class="message-sender">{{ message.sender }}</strong> <br />
       {{ message.message }} <br />
       <small class="message-date">{{
