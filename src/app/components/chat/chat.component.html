@@ -9,18 +9,20 @@
   </div>
 
   <hr />
-  <div class="contenedor-input">
-    <div class="message-input">
-      <form (ngSubmit)="sendMessage()">
-        <input
-          name="inputForm"
-          class="chat-input"
-          type="text"
-          [(ngModel)]="newMessage"
-          placeholder="Ingrese su mensaje"
-        />
-        <button type="submit" class="btn btn-primary">Enviar</button>
-      </form>
+  <div class="row contenedor-input">
+    <div class="col">
+      <div class="message-input">
+        <form class="d-flex" (ngSubmit)="sendMessage()">
+          <input
+            name="inputForm"
+            class="chat-input form-control"
+            type="text"
+            [(ngModel)]="newMessage"
+            placeholder="Ingrese su mensaje"
+          />
+          <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
+      </div>
     </div>
   </div>
 </div>
