@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { JuegosRoutingModule } from './juegos-routing.module';
@@ -12,8 +12,11 @@ import { JuegosService } from '../../services/juegos.service';
     JuegosRoutingModule
   ]
 })
-export class JuegosModule {
+export class JuegosModule implements OnDestroy{
   constructor(private juegoService : JuegosService){
-    this.juegoService.setModuleLoaded(true);
+    //this.juegoService.setModuleLoaded(true);
+  }
+  ngOnDestroy(): void {
+    console.log('Se destruye el modulo');
   }
  }
