@@ -108,37 +108,6 @@ export class MayorMenorComponent implements OnDestroy, OnInit {
     }, 100);
   }
 
-  higherHandler() {
-    if (this.guessHigher()) {
-      this.isCorrect = true;
-      this.mensaje = 'Has adivinado!';
-      this.userScore++;
-    }
-  }
-
-  lowerHandler() {
-    if (this.guessLower()) {
-      this.isCorrect = false;
-      this.mensaje = 'Incorrecto! Intenta nuevvamente';
-      this.userScore++;
-    }
-    setTimeout(() => {
-      this.getNextCard();
-      this.coverNextCard();
-    }, 1000);
-    setTimeout(() => {
-      this.revealNextCard();
-    }, 100);
-  }
-
-  guessHigher() {
-    return this.currentCard.numero < this.nextCard.numero;
-  }
-
-  guessLower() {
-    return this.currentCard.numero > this.nextCard.numero;
-  }
-
   getCardImage(card: Card): string {
     return '/8bit-cards/' + card.numero.toString() + '-' + card.palo + '.png';
   }

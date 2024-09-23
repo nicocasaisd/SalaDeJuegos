@@ -1,49 +1,55 @@
 <div class="contenedor-principal">
   <app-btn-salir></app-btn-salir>
-  <div class="container align-items-center">
-    <div class="row">
-      <h1>El Juego de Mayor y Menor</h1>
-    </div>
-    <div class="row">
-      <div class="col">
-        <div class="m-2">
-          <h2>{{ this.currentCard.numero + " " + this.currentCard.palo }}</h2>
-          <img src="{{ this.getCardImage(this.currentCard) }}" alt="Carta" />
+  
+  <!-- Game Title -->
+  <div class="container text-center my-4">
+    <h1>El Juego de Mayor y Menor</h1>
+  </div>
+
+  <!-- Game Cards Section -->
+  <div class="container">
+    <div class="row justify-content-center">
+      <!-- Current Card -->
+      <div class="col-lg-5 text-center">
+        <div class="m-2 p-3">
+          <h2>{{ currentCard.numero + " " + currentCard.palo }}</h2>
+          <img [src]="getCardImage(currentCard)" alt="Carta" class="img-fluid" />
         </div>
       </div>
-      <div class="col">
-        <div class="m-2">
+
+      <!-- Next Card -->
+      <div class="col-lg-5 text-center">
+        <div class="m-2 p-3">
           <h2>Próxima carta</h2>
-          <!-- <img src="/8bit-cards/back-blue.png" alt="Carta" /> -->
-          <img [src]="nextCardImage" alt="Carta" />
+          <img [src]="nextCardImage" alt="Carta" class="img-fluid" />
         </div>
       </div>
     </div>
-    <div class="row">
-      <!-- Message area to show the result -->
-      <div
-        *ngIf="mensaje"
-        [ngClass]="{ correct: isCorrect, wrong: !isCorrect}"
-        class="result-message mt-3"
-      >
-        {{ mensaje }}
+
+    <!-- Message Area -->
+    <div class="row justify-content-center mt-3" style="min-height: 70px;">
+      <div class="col-lg-8">
+        <div *ngIf="mensaje" 
+             [ngClass]="{ correct: isCorrect, wrong: !isCorrect }" 
+             class="result-message p-3 text-center">
+          {{ mensaje }}
+        </div>
       </div>
     </div>
   </div>
-  <!-- Botones generados -->
+
+  <!-- Game Buttons and Score -->
   <div class="container text-center mt-4">
     <h2>Adivine la próxima carta:</h2>
-    <button class="btn btn-higher btn-lg mx-5" (click)="makeGuess('higher')">
-      Mayor
-    </button>
-    <button class="btn btn-lower btn-lg mx-5" (click)="makeGuess('lower')">
-      Menor
-    </button>
+    <div class="d-flex justify-content-center align-items-center">
+      <button class="btn btn-higher btn-lg mx-3" (click)="makeGuess('higher')">Mayor</button>
+      <button class="btn btn-lower btn-lg mx-3" (click)="makeGuess('lower')">Menor</button>
+    </div>
 
-    <!-- Puntuacion -->
-    <div class="row">
-      <div class="col">
-        <h2>Puntuación: {{ this.userScore }}</h2>
+    <!-- Score -->
+    <div class="row justify-content-center mt-4">
+      <div class="col-auto">
+        <h2>Puntuación: {{ userScore }}</h2>
       </div>
     </div>
   </div>
