@@ -42,8 +42,8 @@
   <div class="container text-center mt-4">
     <h2>Adivine la próxima carta:</h2>
     <div class="d-flex justify-content-center align-items-center">
-      <button class="btn btn-higher btn-lg mx-3" (click)="makeGuess('higher')">Mayor</button>
-      <button class="btn btn-lower btn-lg mx-3" (click)="makeGuess('lower')">Menor</button>
+      <button class="btn btn-higher btn-lg mx-3" [disabled]="isButtonDisabled" (click)="makeGuess('higher')">Mayor</button>
+      <button class="btn btn-lower btn-lg mx-3" [disabled]="isButtonDisabled" (click)="makeGuess('lower')">Menor</button>
     </div>
 
     <!-- Score -->

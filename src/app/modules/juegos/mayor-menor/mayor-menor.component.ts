@@ -31,6 +31,7 @@ export class MayorMenorComponent implements OnDestroy, OnInit {
   userScore: number = 0;
   mensaje: string = '';
   isCorrect!: boolean;
+  isButtonDisabled = false;
 
   currentCard: any;
   nextCard: any;
@@ -80,6 +81,7 @@ export class MayorMenorComponent implements OnDestroy, OnInit {
   }
 
   makeGuess(guess: 'higher' | 'lower') {
+    this.isButtonDisabled = true;
     if (
       (guess === 'higher' && this.currentCard.numero < this.nextCard.numero) ||
       (guess === 'lower' && this.currentCard.numero > this.nextCard.numero)
@@ -101,6 +103,7 @@ export class MayorMenorComponent implements OnDestroy, OnInit {
       this.coverNextCard();
       // Limpio mensaje
       this.mensaje = '';
+      this.isButtonDisabled = false;
     }, 1000);
     // Revelo la carta
     setTimeout(() => {
