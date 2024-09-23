@@ -1,3 +1,10 @@
 <div class="contenedor-principal">
   <app-btn-salir></app-btn-salir>
+  <div>
+    <h1>{{this.currentCard.numero + ' '+ this.currentCard.palo}}</h1>
+    <img src={{this.getCardImage(this.currentCard)}} alt="Carta" >
+    <!-- <img src="/8bit-cards/10-hearts.png" alt=""> -->
+
+    <button (click)="getNextCard()">Generar</button>
+  </div>
 </div>
