@@ -12,8 +12,13 @@ import { JuegosService } from '../../../services/juegos.service';
 export class AhorcadoComponent implements OnInit, OnDestroy{
 
   constructor(public juego: JuegosService){
-
+    for(let i=0; i<26; i++){
+      this.letras.push(String.fromCharCode(97 + i));
+    }
+    console.log(this.letras);
   }
+
+  letras : string[] = [];
 
   ngOnInit(): void {
     this.juego.setModuleLoaded(true);
