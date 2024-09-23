@@ -2,7 +2,7 @@
     width: 100vw;
     height: 100vh;
     overflow: hidden;
-    background-color: black;
+    background-color: #3d5c4d;
 }
 
 
@@ -10,3 +10,46 @@ img{
     width: 250px;
     height: auto;
 }
+
+/* Custom styles for the buttons */
+.btn-higher {
+    background-color: #28a745; /* Green background */
+    color: white;
+    border: none;
+    width: 150px;  /* Adjust the width */
+    height: 60px;  /* Adjust the height */
+    font-size: 20px;  /* Make text larger */
+    transition: all 0.3s ease;
+    margin: 5%;
+  }
+  
+  .btn-higher:hover {
+    background-color: #218838; /* Darker green on hover */
+  }
+  
+  .btn-lower {
+    background-color: #dc3545; /* Red background */
+    color: white;
+    border: none;
+    width: 150px;  /* Adjust the width */
+    height: 60px;  /* Adjust the height */
+    font-size: 20px;  /* Make text larger */
+    transition: all 0.3s ease;
+  }
+  
+  .btn-lower:hover {
+    background-color: #c82333; /* Darker red on hover */
+  }
+
+  .result-message {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .correct {
+    color: green;
+  }
+  
+  .wrong {
+    color: red;
+  }

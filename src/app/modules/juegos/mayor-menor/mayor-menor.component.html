@@ -2,6 +2,9 @@
   <app-btn-salir></app-btn-salir>
   <div class="container align-items-center">
     <div class="row">
+      <h1>El Juego de Mayor y Menor</h1>
+    </div>
+    <div class="row">
       <div class="col">
         <div class="m-2">
           <h2>{{ this.currentCard.numero + " " + this.currentCard.palo }}</h2>
@@ -11,18 +14,36 @@
       <div class="col">
         <div class="m-2">
           <h2>Próxima carta</h2>
-          <img src="/8bit-cards/back-blue.png" alt="Carta" />
+          <!-- <img src="/8bit-cards/back-blue.png" alt="Carta" /> -->
+          <img [src]="nextCardImage" alt="Carta" />
         </div>
       </div>
     </div>
     <div class="row">
-      <div class="col-6">
-
-        <button class="btn btn-primary" (click)="higherHandler()">Adivinar Mayor</button>
+      <!-- Message area to show the result -->
+      <div
+        *ngIf="mensaje"
+        [ngClass]="{ correct: isCorrect, wrong: !isCorrect}"
+        class="result-message mt-3"
+      >
+        {{ mensaje }}
       </div>
-      <div class="col-6">
+    </div>
+  </div>
+  <!-- Botones generados -->
+  <div class="container text-center mt-4">
+    <h2>Adivine la próxima carta:</h2>
+    <button class="btn btn-higher btn-lg mx-5" (click)="makeGuess('higher')">
+      Mayor
+    </button>
+    <button class="btn btn-lower btn-lg mx-5" (click)="makeGuess('lower')">
+      Menor
+    </button>
 
-        <button class="btn btn-primary" (click)="getNextCard()">Adivinar Menor</button>
+    <!-- Puntuacion -->
+    <div class="row">
+      <div class="col">
+        <h2>Puntuación: {{ this.userScore }}</h2>
       </div>
     </div>
   </div>
