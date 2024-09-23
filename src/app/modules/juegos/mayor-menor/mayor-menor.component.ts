@@ -1,7 +1,15 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { BtnSalirComponent } from '../btn-salir/btn-salir.component';
 import { JuegosService } from '../../../services/juegos.service';
 import { CommonModule } from '@angular/common';
+
+declare var bootstrap: any;
 
 interface Card {
   numero: number;
@@ -16,7 +24,6 @@ interface Card {
   styleUrl: './mayor-menor.component.css',
 })
 export class MayorMenorComponent implements OnDestroy, OnInit {
-  
   constructor(public juego: JuegosService) {
     this.generateDeck();
     this.mezclarMazo();

@@ -1,6 +1,6 @@
 <div class="contenedor-principal">
   <app-btn-salir></app-btn-salir>
-  
+
   <!-- Game Title -->
   <div class="container text-center my-4">
     <h1>El Juego de Mayor y Menor</h1>
@@ -10,15 +10,19 @@
   <div class="container">
     <div class="row justify-content-center">
       <!-- Current Card -->
-      <div class="col-lg-5 text-center">
+      <div class="col-lg-5 col-md-6 col-12 text-center">
         <div class="m-2 p-3">
-          <h2>{{ currentCard.numero + " " + currentCard.palo }}</h2>
-          <img [src]="getCardImage(currentCard)" alt="Carta" class="img-fluid" />
+          <h2>Tu carta</h2>
+          <img
+            [src]="getCardImage(currentCard)"
+            alt="Carta"
+            class="img-fluid"
+          />
         </div>
       </div>
 
       <!-- Next Card -->
-      <div class="col-lg-5 text-center">
+      <div class="col-lg-5 col-md-6 col-12 text-center">
         <div class="m-2 p-3">
           <h2>Próxima carta</h2>
           <img [src]="nextCardImage" alt="Carta" class="img-fluid" />
@@ -27,11 +31,13 @@
     </div>
 
     <!-- Message Area -->
-    <div class="row justify-content-center mt-3" style="min-height: 70px;">
-      <div class="col-lg-8">
-        <div *ngIf="mensaje" 
-             [ngClass]="{ correct: isCorrect, wrong: !isCorrect }" 
-             class="result-message p-3 text-center">
+    <div class="row justify-content-center mt-3" style="min-height: 70px">
+      <div class="col-lg-8 col-md-10 col-12">
+        <div
+          *ngIf="mensaje"
+          [ngClass]="{ correct: isCorrect, wrong: !isCorrect }"
+          class="result-message p-3 text-center"
+        >
           {{ mensaje }}
         </div>
       </div>
@@ -42,8 +48,20 @@
   <div class="container text-center mt-4">
     <h2>Adivine la próxima carta:</h2>
     <div class="d-flex justify-content-center align-items-center">
-      <button class="btn btn-higher btn-lg mx-3" [disabled]="isButtonDisabled" (click)="makeGuess('higher')">Mayor</button>
-      <button class="btn btn-lower btn-lg mx-3" [disabled]="isButtonDisabled" (click)="makeGuess('lower')">Menor</button>
+      <button
+        class="btn btn-higher btn-lg mx-3"
+        [disabled]="isButtonDisabled"
+        (click)="makeGuess('higher')"
+      >
+        Mayor
+      </button>
+      <button
+        class="btn btn-lower btn-lg mx-3"
+        [disabled]="isButtonDisabled"
+        (click)="makeGuess('lower')"
+      >
+        Menor
+      </button>
     </div>
 
     <!-- Score -->
