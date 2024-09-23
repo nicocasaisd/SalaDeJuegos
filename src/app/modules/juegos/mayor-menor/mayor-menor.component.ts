@@ -67,6 +67,10 @@ export class MayorMenorComponent implements OnDestroy, OnInit {
     }
   }
 
+  revealNextCard(){
+    
+  }
+
   higherHandler(){
     setTimeout(()=>{
       this.getNextCard()
