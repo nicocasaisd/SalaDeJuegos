@@ -67,6 +67,20 @@ export class MayorMenorComponent implements OnDestroy, OnInit {
     }
   }
 
+  higherHandler(){
+    setTimeout(()=>{
+      this.getNextCard()
+    }, 500);
+  }
+
+  guessHigher(){
+    return this.currentCard.numero < this.nextCard.numero;
+  }
+
+  guessLower(){
+    return this.currentCard.numero > this.nextCard.numero;
+  }
+
   getCardImage(card : Card) : string{
     return "/8bit-cards/"+card.numero.toString()+"-"+card.palo+".png";
   }

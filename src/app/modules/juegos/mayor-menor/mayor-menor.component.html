@@ -1,10 +1,29 @@
 <div class="contenedor-principal">
   <app-btn-salir></app-btn-salir>
-  <div>
-    <h1>{{this.currentCard.numero + ' '+ this.currentCard.palo}}</h1>
-    <img src={{this.getCardImage(this.currentCard)}} alt="Carta" >
-    <!-- <img src="/8bit-cards/10-hearts.png" alt=""> -->
+  <div class="container align-items-center">
+    <div class="row">
+      <div class="col">
+        <div class="m-2">
+          <h2>{{ this.currentCard.numero + " " + this.currentCard.palo }}</h2>
+          <img src="{{ this.getCardImage(this.currentCard) }}" alt="Carta" />
+        </div>
+      </div>
+      <div class="col">
+        <div class="m-2">
+          <h2>Próxima carta</h2>
+          <img src="/8bit-cards/back-blue.png" alt="Carta" />
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
 
-    <button (click)="getNextCard()">Generar</button>
+        <button class="btn btn-primary" (click)="higherHandler()">Adivinar Mayor</button>
+      </div>
+      <div class="col-6">
+
+        <button class="btn btn-primary" (click)="getNextCard()">Adivinar Menor</button>
+      </div>
+    </div>
   </div>
 </div>

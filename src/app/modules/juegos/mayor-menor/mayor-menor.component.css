@@ -4,3 +4,9 @@
     overflow: hidden;
     background-color: black;
 }
+
+
+img{
+    width: 250px;
+    height: auto;
+}
