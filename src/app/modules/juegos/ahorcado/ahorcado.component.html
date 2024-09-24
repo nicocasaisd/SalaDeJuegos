@@ -135,16 +135,16 @@
         <div id="letra{{ i }}">
           <!-- Condicional -->
           <ng-container *ngIf="revealedLetters[i]; else hiddenLetter">
-            <span>{{ letter }}</span>
+            <span class="letra-ahorcado">{{ letter }}</span>
           </ng-container>
           <ng-template #hiddenLetter>
-            <svg width="100" height="20" xmlns="http://www.w3.org/2000/svg">
+            <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
               <!-- viewBox="0 0 200 100" -->
               <line
                 x1="10"
-                y1="10"
+                y1="80"
                 x2="90"
-                y2="10"
+                y2="80"
                 stroke="black"
                 stroke-width="4"
               />
@@ -161,6 +161,7 @@
         <button
           (click)="revealLetter(letra)"
           class="container-letra d-flex justify-content-center align-items-center"
+          id="letra-{{ letra }}"
         >
           {{ letra }}
         </button>
@@ -169,3 +170,28 @@
     </div>
   </div>
 </div>
+
+<button (click)="this.gameEnded = true;">
+Terminar
+</button>
+<ng-container *ngIf="gameEnded">
+  <div class="modal">
+    <div class="modal-content">
+      <h2>Fin del Juego</h2>
+      <p>Lo siento, has perdido.</p>
+      <div class="stats-container">
+        <div class="stat-box">
+          <h3>Tiempo de juego</h3>
+          <!-- <p>{{ gameTimeInSeconds }} segundos</p> -->
+        </div>
+        <div class="stat-box">
+          <h3>Puntuación</h3>
+          <!-- <p>{{ score }}</p> -->
+        </div>
+      </div>
+      <button routerLink="/home">Salir</button>
+      <!-- <button (click)="startGame()">Jugar de nuevo</button> -->
+    </div>
+    <div></div>
+  </div>
+</ng-container>
