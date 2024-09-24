@@ -110,6 +110,7 @@ export class MayorMenorComponent implements OnDestroy, OnInit {
       this.isCorrect = false;
       this.mensaje = 'Incorrecto! Intenta nuevamente';
     }
+    this.cantidadDeRondas++;
     this.renovarMano();
   }
 
@@ -121,6 +122,9 @@ export class MayorMenorComponent implements OnDestroy, OnInit {
       // Limpio mensaje
       this.mensaje = '';
       this.isButtonDisabled = false;
+      if(this.cantidadDeRondas >= 6){
+        this.gameEnded = true;
+      }
     }, 1000);
     // Revelo la carta
     setTimeout(() => {
