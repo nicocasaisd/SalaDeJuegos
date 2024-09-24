@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { BtnSalirComponent } from '../btn-salir/btn-salir.component';
 import { JuegosService } from '../../../services/juegos.service';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ahorcado',
@@ -11,7 +12,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './ahorcado.component.css',
 })
 export class AhorcadoComponent implements OnInit, OnDestroy {
-  constructor(public juego: JuegosService) {
+  constructor(public juego: JuegosService, public router: Router) {
     this.initializeAlphabet();
     this.currentWord = this.getRandomWord();
     this.initilizeWord();
@@ -25,15 +26,29 @@ export class AhorcadoComponent implements OnInit, OnDestroy {
   wordLength!: number;
   revealedLetters: boolean[] = [];
 
-  partesDelAhorcado = ['rope', 'head', 'body', 'left-arm', 'right-arm', 'left-leg', 'right-leg'];
-  cantidadDeErrores : number = 0;
+  partesDelAhorcado = [
+    'rope',
+    'head',
+    'body',
+    'left-arm',
+    'right-arm',
+    'left-leg',
+    'right-leg',
+  ];
+  cantidadDeErrores: number = 0;
 
   gameEnded = false;
 
-  drawHangman(){
-    const part = document.getElementById(this.partesDelAhorcado[this.cantidadDeErrores]);
+  goHome() {
+    this.router.navigate(['/home']); // Assuming you have a home route set up
+  }
+
+  drawHangman() {
+    const part = document.getElementById(
+      this.partesDelAhorcado[this.cantidadDeErrores]
+    );
     // Chequeamos si vuelve un elemento
-    if(part){
+    if (part) {
       part.style.visibility = 'visible';
     }
   }
@@ -64,9 +79,8 @@ export class AhorcadoComponent implements OnInit, OnDestroy {
     // Chequeamos si la letra existe
     letter = letter.toUpperCase();
     console.log(letter);
-
     let letterFound = false;
-    
+
     for (let i = 0; i < this.currentWordList.length; i++) {
       console.log(this.currentWordList[i]);
       if (letter === this.currentWordList[i]) {
@@ -74,21 +88,29 @@ export class AhorcadoComponent implements OnInit, OnDestroy {
         letterFound = true;
       }
     }
-    if(!letterFound){
+    if (!letterFound) {
       this.drawHangman();
-      this.cantidadDeErrores ++;
-
+      this.cantidadDeErrores++;
     }
     console.log(this.revealedLetters);
     // Deshabilitamos el boton de esa letra
     this.disableButton(letter);
 
+    // Revisamos si termino el juego
+    if (
+      this.cantidadDeErrores >= 7 ||
+      this.revealedLetters.every((value) => value === true)
+    ) {
+      this.gameEnded = true;
+    }
   }
 
-  disableButton(letter : string){
-    const button = document.getElementById('letra-'+letter.toLowerCase()) as HTMLButtonElement;
+  disableButton(letter: string) {
+    const button = document.getElementById(
+      'letra-' + letter.toLowerCase()
+    ) as HTMLButtonElement;
     // Chequeamos si vuelve un elemento
-    if(button){
+    if (button) {
       button.disabled = true;
       button.style.backgroundColor = 'grey';
     }
