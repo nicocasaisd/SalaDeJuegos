@@ -1,11 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { BtnSalirComponent } from "../btn-salir/btn-salir.component";
 import { JuegosService } from '../../../services/juegos.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-ahorcado',
   standalone: true,
-  imports: [BtnSalirComponent],
+  imports: [BtnSalirComponent, CommonModule],
   templateUrl: './ahorcado.component.html',
   styleUrl: './ahorcado.component.css'
 })

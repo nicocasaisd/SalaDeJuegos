@@ -1,4 +1,142 @@
 <div class="contenedor-principal">
   <app-btn-salir></app-btn-salir>
-  
+  <div class="container">
+    <!-- Dibujo del ahorcado -->
+
+    <div class="container text-center">
+      <!-- SVG for hangman drawing -->
+      <svg
+        width="200"
+        height="300"
+        viewBox="0 0 200 300"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <!-- Base -->
+        <line
+          x1="10"
+          y1="290"
+          x2="190"
+          y2="290"
+          stroke="black"
+          stroke-width="4"
+        />
+
+        <!-- Pole -->
+        <line
+          x1="50"
+          y1="290"
+          x2="50"
+          y2="50"
+          stroke="black"
+          stroke-width="4"
+        />
+
+        <!-- Top bar -->
+        <line
+          x1="50"
+          y1="50"
+          x2="150"
+          y2="50"
+          stroke="black"
+          stroke-width="4"
+        />
+
+        <!-- Rope -->
+        <line
+          id="rope"
+          x1="150"
+          y1="50"
+          x2="150"
+          y2="100"
+          stroke="black"
+          stroke-width="4"
+          visibility="hidden"
+        />
+
+        <!-- Head -->
+        <circle
+          id="head"
+          cx="150"
+          cy="120"
+          r="20"
+          stroke="black"
+          stroke-width="4"
+          fill="none"
+          visibility="hidden"
+        />
+
+        <!-- Body -->
+        <line
+          id="body"
+          x1="150"
+          y1="140"
+          x2="150"
+          y2="220"
+          stroke="black"
+          stroke-width="4"
+          visibility="hidden"
+        />
+
+        <!-- Left arm -->
+        <line
+          id="left-arm"
+          x1="150"
+          y1="160"
+          x2="120"
+          y2="180"
+          stroke="black"
+          stroke-width="4"
+          visibility="hidden"
+        />
+
+        <!-- Right arm -->
+        <line
+          id="right-arm"
+          x1="150"
+          y1="160"
+          x2="180"
+          y2="180"
+          stroke="black"
+          stroke-width="4"
+          visibility="hidden"
+        />
+
+        <!-- Left leg -->
+        <line
+          id="left-leg"
+          x1="150"
+          y1="220"
+          x2="120"
+          y2="260"
+          stroke="black"
+          stroke-width="4"
+          visibility="hidden"
+        />
+
+        <!-- Right leg -->
+        <line
+          id="right-leg"
+          x1="150"
+          y1="220"
+          x2="180"
+          y2="260"
+          stroke="black"
+          stroke-width="4"
+          visibility="hidden"
+        />
+      </svg>
+    </div>
+
+    <div class="text-center mt-4">
+      <div class="d-flex flex-wrap justify-content-center">
+        @for (letra of this.letras; track $index) {
+        <button
+          class="container-letra d-flex justify-content-center align-items-center"
+        >
+          {{ letra }}
+        </button>
+        }
+      </div>
+    </div>
+  </div>
 </div>
