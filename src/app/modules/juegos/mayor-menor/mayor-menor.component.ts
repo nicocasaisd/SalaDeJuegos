@@ -8,6 +8,7 @@ import {
 import { BtnSalirComponent } from '../btn-salir/btn-salir.component';
 import { JuegosService } from '../../../services/juegos.service';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 declare var bootstrap: any;
 
@@ -24,7 +25,7 @@ interface Card {
   styleUrl: './mayor-menor.component.css',
 })
 export class MayorMenorComponent implements OnDestroy, OnInit {
-  constructor(public juego: JuegosService) {
+  constructor(public juego: JuegosService, public router : Router) {
     this.generateDeck();
     this.mezclarMazo();
     console.log(this.mazo);
@@ -35,6 +36,7 @@ export class MayorMenorComponent implements OnDestroy, OnInit {
   }
 
   mazo: Card[] = [];
+  cantidadDeRondas = 0;
   userScore: number = 0;
   mensaje: string = '';
   isCorrect!: boolean;
@@ -44,6 +46,13 @@ export class MayorMenorComponent implements OnDestroy, OnInit {
   nextCard: any;
   currentCardImage: string = '';
   nextCardImage: string = '/8bit-cards/back-blue.png';
+  
+
+  gameEnded = false;
+
+  goHome() {
+    this.router.navigate(['/home']); // Assuming you have a home route set up
+  }
 
   ngOnInit(): void {
     this.juego.setModuleLoaded(true);
@@ -76,6 +85,7 @@ export class MayorMenorComponent implements OnDestroy, OnInit {
       this.nextCard = this.mazo.pop();
     } else {
       console.log('No hay más cartas');
+      this.gameEnded = true;
     }
   }
 
