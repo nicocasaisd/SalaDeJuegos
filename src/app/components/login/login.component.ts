@@ -103,10 +103,14 @@ export class LoginComponent {
             this.msjError = 'El email ingresado es inválido.';
             break;
           case 'auth/invalid-credential':
-            this.msjError = 'El email o la contraseña ingresadas son inválidas.';
+            this.msjError =
+              'El email o la contraseña ingresadas son inválidas.';
             break;
           case 'auth/missing-password':
             this.msjError = 'Ingrese una contraseña.';
+            break;
+          case 'auth/too-many-requests':
+            this.msjError = 'Demasiadas peticiones al servidor. Espere unos segundos.';
             break;
           default:
             this.msjError = e.code;
