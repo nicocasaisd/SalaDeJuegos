@@ -81,6 +81,7 @@ export class LoginComponent {
   }
 
   login() {
+    this.msjError = '';
     console.log('Inside login...');
     console.log(this.userMail, ': ', this.userPass);
     signInWithEmailAndPassword(this.auth, this.userMail, this.userPass)
@@ -99,10 +100,10 @@ export class LoginComponent {
         console.log('Se recibio un error : ', e.code);
         switch (e.code) {
           case 'auth/invalid-email':
-            this.msjError = 'Email invalido.';
+            this.msjError = 'El email ingresado es inválido.';
             break;
           case 'auth/invalid-credential':
-            this.msjError = 'La contraseña es incorrecta.';
+            this.msjError = 'El email o la contraseña ingresadas son inválidas.';
             break;
           case 'auth/missing-password':
             this.msjError = 'Ingrese una contraseña.';

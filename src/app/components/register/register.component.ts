@@ -36,6 +36,7 @@ export class RegisterComponent {
   }
 
   register() {
+    this.msjError = '';
     createUserWithEmailAndPassword(
       this.auth,
       this.newUserMail,
@@ -53,13 +54,13 @@ export class RegisterComponent {
         console.log('Se recibio un error : ', e.code);
         switch (e.code) {
           case 'auth/invalid-email':
-            this.msjError = 'Email invalido.';
+            this.msjError = 'El email ingresado es invalido.';
             break;
           case 'auth/email-already-in-use':
-            this.msjError = 'Email ya en uso.';
+            this.msjError = 'El email ingresado ya se encuentra en uso.';
             break;
           case 'auth/weak-password':
-            this.msjError = 'Contraseña demasiado débil. Ingrese letras y números.';
+            this.msjError = 'Contraseña demasiado débil. Ingrese al menos 6 caracteres.';
             break;
           case 'auth/missing-password':
             this.msjError = 'Ingrese una contraseña.';

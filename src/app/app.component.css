@@ -1,6 +1,7 @@
 .main {
   margin: 0;
-  height: 100vh;
+  max-height: 100vh;
+  
 
   background-image: url("/background.jpeg");
   background-size: cover;
