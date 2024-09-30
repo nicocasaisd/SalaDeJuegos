@@ -22,10 +22,12 @@ export class WordleComponent implements OnInit, OnDestroy {
   tiles: { letter: string; state: 'correct' | 'present' | 'absent' | '' }[][] =
     [];
 
-  words: string[] = ['APPLE', 'MANGO', 'GRAPE', 'PEACH', 'LEMON']; // Add more words as needed
+  words: string[] = ['PERRO']; // Add more words as needed
 
-  // Map to store the state of each letter
-  letterStates: { [key: string]: 'correct' | 'present' | 'absent' | '' } = {};
+  gameEnded = false;
+  gameWon = false;
+  // // Map to store the state of each letter
+  // letterStates: { [key: string]: 'correct' | 'present' | 'absent' | '' } = {};
 
   constructor(public juego: JuegosService) {
     this.wordToGuess = this.getRandomWord();
@@ -91,10 +93,22 @@ export class WordleComponent implements OnInit, OnDestroy {
   }
 
   onSubmitGuess() {
+    console.log(this.currentGuess);
     if (this.currentGuess.length === this.wordLength) {
       this.checkGuess();
       this.currentGuessIndex++;
       this.currentGuess = ''; // Reset current guess for the next row
+      this.checkIfGameEnded();
+    }
+  }
+
+  checkIfGameEnded() {
+    // Revisamos si termino el juego
+    if (this.currentGuessIndex >= this.maxGuesses) {
+      this.gameEnded = true;
+    } else if (this.currentGuess === this.wordToGuess) {
+      this.gameEnded = true;
+      this.gameWon = true;
     }
   }
 
@@ -103,19 +117,44 @@ export class WordleComponent implements OnInit, OnDestroy {
       const letter = this.currentGuess[i];
       if (letter === this.wordToGuess[i]) {
         this.tiles[this.currentGuessIndex][i] = { letter, state: 'correct' };
+        //this.updateLetterState(letter, 'correct');
       } else if (this.wordToGuess.includes(letter)) {
         this.tiles[this.currentGuessIndex][i] = { letter, state: 'present' };
+        //this.updateLetterState(letter, 'present');
       } else {
         this.tiles[this.currentGuessIndex][i] = { letter, state: 'absent' };
+        //this.updateLetterState(letter, 'absent');
       }
     }
     this.guesses.push(this.currentGuess);
   }
+
+  // // Function to update the state of each letter based on the current guess
+  // updateLetterState(letter: string, state: 'correct' | 'present' | 'absent') {
+  //   const currentState = this.letterStates[letter];
+
+  //   // Update the letter state only if the new state is "better"
+  //   if (
+  //     currentState === '' ||
+  //     (currentState === 'present' && state === 'correct') ||
+  //     currentState === 'absent'
+  //   ) {
+  //     //  this.letterStates = { ...this.letterStates, [letter]: state };  // Trigger change detection by updating the object reference
+  //     this.letterStates[letter] = state;
+  //   }
+  // }
 
   isGameOver() {
     return (
       this.currentGuessIndex >= this.maxGuesses ||
       this.guesses.includes(this.wordToGuess)
     );
+  }
+
+  resetGame() {
+    throw new Error('Method not implemented.');
+  }
+  goHome() {
+    throw new Error('Method not implemented.');
   }
 }

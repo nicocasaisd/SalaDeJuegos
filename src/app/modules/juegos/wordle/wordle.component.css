@@ -1,10 +1,14 @@
 .contenedor-principal {
   width: 100vw;
-  height: 100vh;
+  /* height: 100vh; */
+  min-height: 100vh;
   background-color: #236d7a;
   background-repeat: repeat;
 }
-
+.container{
+    width: 40%;
+    height: auto;
+}
 .wordle-board {
   display: grid;
   gap: 10px;
@@ -50,4 +54,10 @@ button {
   margin: 5px;
   padding: 10px;
   font-size: 18px;
+}
+
+.keyboard-btn{
+    width: 50px; /* Adjust the width */
+    height: 50px; /* Adjust the height */
+    font-size: 20px; /* Make text larger */
 }
