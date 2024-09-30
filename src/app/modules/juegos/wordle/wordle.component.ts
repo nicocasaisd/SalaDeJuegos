@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { BtnSalirComponent } from '../btn-salir/btn-salir.component';
 import { CommonModule } from '@angular/common';
 import { JuegosService } from '../../../services/juegos.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-wordle',
@@ -29,7 +30,7 @@ export class WordleComponent implements OnInit, OnDestroy {
   // // Map to store the state of each letter
   // letterStates: { [key: string]: 'correct' | 'present' | 'absent' | '' } = {};
 
-  constructor(public juego: JuegosService) {
+  constructor(public juego: JuegosService, public router: Router) {
     this.wordToGuess = this.getRandomWord();
     this.initializeTiles();
     this.initializeAlphabet();
@@ -152,9 +153,18 @@ export class WordleComponent implements OnInit, OnDestroy {
   }
 
   resetGame() {
-    throw new Error('Method not implemented.');
+
+  this.currentGuessIndex= 0;
+  this.currentGuess= '';
+  this.guesses = [];
+  this.wordToGuess = this.getRandomWord();
+  this.initializeTiles();
+  //this.initializeAlphabet();
+  this.gameEnded = false;
+  this.gameWon = false;
+
   }
   goHome() {
-    throw new Error('Method not implemented.');
+    this.router.navigate(['/home']);
   }
 }
