@@ -13,13 +13,16 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="endGameModalLabel">Game Over</h5>
+        <h5 class="modal-title" id="endGameModalLabel">Juego terminado</h5>
       </div>
       <div class="modal-body">
+        <p>{{ gameWon ? '¡Felicidades! Has ganado.' : 'Lo siento, has perdido. La palabra era: ' + currentWord }}</p>
         El juego ha terminado. Desea volver al inicio?
       </div>
+      
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" (click)="goHome()">Volver a Inicio</button>
+        <button type="button" class="btn btn-primary" (click)="resetGame()">Jugar de nuevo</button>
       </div>
     </div>
   </div>

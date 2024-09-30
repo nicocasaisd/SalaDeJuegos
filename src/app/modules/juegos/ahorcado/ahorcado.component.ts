@@ -38,9 +38,19 @@ export class AhorcadoComponent implements OnInit, OnDestroy {
   cantidadDeErrores: number = 0;
 
   gameEnded = false;
+  gameWon = false;
 
   goHome() {
-    this.router.navigate(['/home']); // Assuming you have a home route set up
+    this.router.navigate(['/home']);
+  }
+
+  resetGame() {
+    this.currentWord = this.getRandomWord();
+    this.initilizeWord();
+    this.cantidadDeErrores = 0;
+    this.gameEnded = false;
+    this.gameWon = false;
+    this.enableAllButtons();
   }
 
   drawHangman() {
@@ -97,11 +107,11 @@ export class AhorcadoComponent implements OnInit, OnDestroy {
     this.disableButton(letter);
 
     // Revisamos si termino el juego
-    if (
-      this.cantidadDeErrores >= 7 ||
-      this.revealedLetters.every((value) => value === true)
-    ) {
+    if (this.cantidadDeErrores >= 7) {
       this.gameEnded = true;
+    } else if(this.revealedLetters.every((value) => value === true)){
+      this.gameEnded = true;
+      this.gameWon = true;
     }
   }
 
@@ -114,6 +124,19 @@ export class AhorcadoComponent implements OnInit, OnDestroy {
       button.disabled = true;
       button.style.backgroundColor = 'grey';
     }
+  }
+
+  enableAllButtons() {
+    this.letras.forEach((letter) => {
+      const button = document.getElementById(
+        'letra-' + letter
+      ) as HTMLButtonElement;
+
+      if (button) {
+        button.disabled = false;
+        button.style.backgroundColor = '#dc3545';
+      }
+    });
   }
 
   ngOnInit(): void {
