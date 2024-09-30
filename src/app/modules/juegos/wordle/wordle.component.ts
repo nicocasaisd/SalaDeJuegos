@@ -97,8 +97,8 @@ export class WordleComponent implements OnInit, OnDestroy {
     if (this.currentGuess.length === this.wordLength) {
       this.checkGuess();
       this.currentGuessIndex++;
-      this.currentGuess = ''; // Reset current guess for the next row
       this.checkIfGameEnded();
+      this.currentGuess = ''; // Reset current guess for the next row
     }
   }
 
