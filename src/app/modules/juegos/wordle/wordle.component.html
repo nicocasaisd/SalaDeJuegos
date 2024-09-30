@@ -3,5 +3,24 @@
   <app-btn-salir></app-btn-salir>
   <div class="container">
     <!-- Dibujo del ahorcado -->
+    <div class="wordle-board">
+        <div class="row" *ngFor="let row of tiles; let rowIndex = index">
+          <div 
+            class="tile" 
+            *ngFor="let tile of row" 
+            [ngClass]="tile.state">
+            {{ tile.letter }}
+          </div>
+        </div>
+      </div>
+      
+      <div class="controls">
+        <button (click)="onLetterInput(letter)" *ngFor="let letter of letras">
+          {{ letter.toUpperCase() }}
+        </button>
+      
+        <button (click)="onDelete()">Delete</button>
+        <button (click)="onSubmitGuess()">Submit</button>
+      </div>
   </div>
 </div>

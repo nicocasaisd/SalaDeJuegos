@@ -1,6 +1,53 @@
 .contenedor-principal {
-    width: 100vw;
-    height: 100vh;
-    background-color: #236d7a;
-    background-repeat: repeat;
-  }
+  width: 100vw;
+  height: 100vh;
+  background-color: #236d7a;
+  background-repeat: repeat;
+}
+
+.wordle-board {
+  display: grid;
+  gap: 10px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 5px;
+}
+
+.tile {
+  width: 60px;
+  height: 60px;
+  border: 2px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.tile.correct {
+  background-color: green;
+  color: white;
+}
+
+.tile.present {
+  background-color: yellow;
+  color: black;
+}
+
+.tile.absent {
+  background-color: grey;
+  color: white;
+}
+
+.controls {
+  margin-top: 20px;
+}
+
+button {
+  margin: 5px;
+  padding: 10px;
+  font-size: 18px;
+}
