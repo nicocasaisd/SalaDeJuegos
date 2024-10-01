@@ -1,30 +1,45 @@
+<!-- Modal de Fin de Juego -->
 <div
   class="modal fade"
   id="endGameModal"
   tabindex="-1"
   aria-labelledby="endGameModalLabel"
   aria-hidden="true"
-  [ngClass]="{ 'show': gameEnded }"
+  [ngClass]="{ show: gameEnded }"
   [ngStyle]="{ display: gameEnded ? 'block' : 'none' }"
-  data-bs-backdrop="static" 
-  data-bs-keyboard="false" 
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
 >
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="endGameModalLabel">Game Over</h5>
+        <h5 class="modal-title" id="endGameModalLabel">Juego terminado</h5>
       </div>
       <div class="modal-body">
+        <p>
+          {{
+            gameWon ? "¡Felicidades! Has ganado." : "Lo siento, has perdido."
+          }}
+        </p>
         El juego ha terminado. Desea volver al inicio?
       </div>
+
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" (click)="goHome()">Volver a Inicio</button>
+        <button type="button" class="btn btn-primary" (click)="goHome()">
+          Volver a Inicio
+        </button>
+        <button type="button" class="btn btn-primary" (click)="resetGame()">
+          Jugar de nuevo
+        </button>
       </div>
     </div>
   </div>
 </div>
 
-
-<button (click)="showModal()">
-   Mostrar
-</button>
+<!-- Contenedor Principal -->
+<div class="contenedor-principal">
+  <app-btn-salir></app-btn-salir>
+  <div class="container">
+    
+  </div>
+</div>

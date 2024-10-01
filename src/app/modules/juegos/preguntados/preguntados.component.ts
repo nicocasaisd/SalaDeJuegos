@@ -14,20 +14,16 @@ import { Router } from '@angular/router';
 export class PreguntadosComponent implements OnInit, OnDestroy {
   constructor(public juego: JuegosService, public router: Router) {}
 
+  gameEnded = false;
+  gameWon = false;
+
   goHome() {
     this.router.navigate(['/home']); // Assuming you have a home route set up
   }
 
-  showModal() {
-    // const modal = document.getElementById('exampleModal') as Htm;
-    // if(modal){
-    //   modal.showPopover();
-    // }
-    this.gameEnded = true;
-    console.log(this.gameEnded);
+  resetGame() {
+    throw new Error('Method not implemented.');
   }
-
-  gameEnded = false;
 
   ngOnInit(): void {
     this.juego.setModuleLoaded(true);

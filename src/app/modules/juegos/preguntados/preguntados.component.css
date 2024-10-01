@@ -1,4 +1,15 @@
+.contenedor-principal {
+    width: 100vw;
+    min-height: 100vh;
+    background-color: #236d7a;
+    background-repeat: repeat;
+  }
+  .container{
+      width: 40%;
+      height: auto;
+  }
 
+/* Modal */
 .modal {
     position: fixed;
     left: 0;
@@ -32,4 +43,5 @@
     border-radius: 5px;
     cursor: pointer;
 }
+
 
