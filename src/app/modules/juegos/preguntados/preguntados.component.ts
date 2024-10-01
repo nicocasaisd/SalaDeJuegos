@@ -14,27 +14,30 @@ import { Pregunta } from './pregunta.interface';
   styleUrl: './preguntados.component.css',
 })
 export class PreguntadosComponent implements OnInit, OnDestroy {
-  constructor(public juego: JuegosService, public router: Router, public preguntadosService : PreguntadosService) {
+  gameEnded = false;
+  gameWon = false;
+
+  constructor(public juego: JuegosService, public router: Router){}
+  /*   constructor(public juego: JuegosService, public router: Router, public preguntadosService : PreguntadosService) {
     this.currentPregunta = preguntadosService.getRandomPregunta();
     console.log(this.currentPregunta);
     this.currentCountry = preguntadosService.getPaisByName(this.currentPregunta.name);
     console.log(this.currentCountry[0].name.common);
   }
 
-  gameEnded = false;
-  gameWon = false;
+
 
   currentPregunta! : Pregunta;
   currentCountry : any;
-
+    */
   goHome() {
-    this.router.navigate(['/home']); // Assuming you have a home route set up
+    this.router.navigate(['/home']); 
   }
 
   resetGame() {
     throw new Error('Method not implemented.');
   }
-
+ 
   ngOnInit(): void {
     this.juego.setModuleLoaded(true);
     console.log('Se crea el componente');
@@ -44,4 +47,5 @@ export class PreguntadosComponent implements OnInit, OnDestroy {
     this.juego.setModuleLoaded(false);
     console.log('Se destruye el componente');
   }
+
 }

@@ -23,7 +23,7 @@ export class WordleComponent implements OnInit, OnDestroy {
   tiles: { letter: string; state: 'correct' | 'present' | 'absent' | '' }[][] =
     [];
 
-  words: string[] = ['PERRO']; 
+  words: string[] = ['PERRO', 'ARBOL']; 
 
   gameEnded = false;
   gameWon = false;

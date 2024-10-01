@@ -33,6 +33,10 @@
 <div class="contenedor-principal">
   <app-btn-salir></app-btn-salir>
   <div class="container">
+    <div name="header">
+      <img class="img-header" src="Wordle_logo.png" alt="">
+      <p class="lead text-center text-muted">Adivina la palabra</p>
+    </div>
     <div class="wordle-board">
       <div class="row" *ngFor="let row of tiles; let rowIndex = index">
         <div class="tile" *ngFor="let tile of row" [ngClass]="tile.state">
