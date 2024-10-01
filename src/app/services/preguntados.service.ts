@@ -8,6 +8,7 @@ import { Pregunta } from '../modules/juegos/preguntados/pregunta.interface';
 })
 export class PreguntadosService {
   constructor() {}
+
   http = inject(HttpClient);
 
   private preguntas: Pregunta[] = [
@@ -210,8 +211,6 @@ export class PreguntadosService {
   }
 
   getPaisByName(name: string) {
-    //let http = inject(HttpClient);
-
     return this.http.get('https://restcountries.com/v3.1/name/' + name);
   }
 

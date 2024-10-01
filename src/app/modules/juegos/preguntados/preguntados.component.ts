@@ -18,6 +18,7 @@ export class PreguntadosComponent implements OnInit, OnDestroy {
     this.currentPregunta = preguntadosService.getRandomPregunta();
     console.log(this.currentPregunta);
     this.currentCountry = preguntadosService.getPaisByName(this.currentPregunta.name);
+    console.log(this.currentCountry[0].name.common);
   }
 
   gameEnded = false;
