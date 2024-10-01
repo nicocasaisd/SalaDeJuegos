@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { MayorMenorComponent } from './mayor-menor/mayor-menor.component';
-import { AhorcadoComponent } from './ahorcado/ahorcado.component';
-import { PreguntadosComponent } from './preguntados/preguntados.component';
-import { WordleComponent } from './wordle/wordle.component';
+// import { MayorMenorComponent } from './mayor-menor/mayor-menor.component';
+// import { AhorcadoComponent } from './ahorcado/ahorcado.component';
+// import { PreguntadosComponent } from './preguntados/preguntados.component';
+// import { WordleComponent } from './wordle/wordle.component';
 
 const routes: Routes = [
   {path: 'mayor-menor', loadComponent: ()=> import('./mayor-menor/mayor-menor.component').then(m=>m.MayorMenorComponent)},

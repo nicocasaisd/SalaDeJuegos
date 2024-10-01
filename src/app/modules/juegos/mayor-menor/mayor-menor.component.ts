@@ -125,7 +125,7 @@ export class MayorMenorComponent implements OnDestroy, OnInit {
       if(this.cantidadDeRondas >= 6){
         this.gameEnded = true;
       }
-    }, 1000);
+    }, 1700);
     // Revelo la carta
     setTimeout(() => {
       this.revealNextCard();
