@@ -23,12 +23,10 @@ export class WordleComponent implements OnInit, OnDestroy {
   tiles: { letter: string; state: 'correct' | 'present' | 'absent' | '' }[][] =
     [];
 
-  words: string[] = ['PERRO']; // Add more words as needed
+  words: string[] = ['PERRO']; 
 
   gameEnded = false;
   gameWon = false;
-  // // Map to store the state of each letter
-  // letterStates: { [key: string]: 'correct' | 'present' | 'absent' | '' } = {};
 
   constructor(public juego: JuegosService, public router: Router) {
     this.wordToGuess = this.getRandomWord();
@@ -74,7 +72,7 @@ export class WordleComponent implements OnInit, OnDestroy {
     if (this.currentGuess.length < this.wordLength) {
       this.currentGuess += letter.toUpperCase();
 
-      // Update the corresponding tile in the current row
+      
       const currentTileIndex = this.currentGuess.length - 1;
       this.tiles[this.currentGuessIndex][currentTileIndex].letter =
         letter.toUpperCase();
@@ -85,10 +83,8 @@ export class WordleComponent implements OnInit, OnDestroy {
     if (this.currentGuess.length > 0) {
       const currentTileIndex = this.currentGuess.length - 1;
 
-      // Remove the last letter from the current guess
+      
       this.currentGuess = this.currentGuess.slice(0, -1);
-
-      // Clear the letter in the corresponding tile
       this.tiles[this.currentGuessIndex][currentTileIndex].letter = '';
     }
   }
@@ -99,7 +95,7 @@ export class WordleComponent implements OnInit, OnDestroy {
       this.checkGuess();
       this.currentGuessIndex++;
       this.checkIfGameEnded();
-      this.currentGuess = ''; // Reset current guess for the next row
+      this.currentGuess = ''; 
     }
   }
 
@@ -129,21 +125,6 @@ export class WordleComponent implements OnInit, OnDestroy {
     }
     this.guesses.push(this.currentGuess);
   }
-
-  // // Function to update the state of each letter based on the current guess
-  // updateLetterState(letter: string, state: 'correct' | 'present' | 'absent') {
-  //   const currentState = this.letterStates[letter];
-
-  //   // Update the letter state only if the new state is "better"
-  //   if (
-  //     currentState === '' ||
-  //     (currentState === 'present' && state === 'correct') ||
-  //     currentState === 'absent'
-  //   ) {
-  //     //  this.letterStates = { ...this.letterStates, [letter]: state };  // Trigger change detection by updating the object reference
-  //     this.letterStates[letter] = state;
-  //   }
-  // }
 
   isGameOver() {
     return (
