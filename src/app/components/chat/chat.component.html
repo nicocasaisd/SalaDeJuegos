@@ -1,6 +1,7 @@
 <div class="container mt-5 rounded-5 contenedor-principal">
-  <div class="contenedor-messages" #messagesContainer>
-    <div class="message" *ngFor="let message of messages | async">
+  <!-- Contenedor Mensaje -->
+  <div class="contenedor-messages d-flex flex-column" #messagesContainer>
+    <div class="message" [ngClass]="{'selfUser':message.sender === this.sender}" *ngFor="let message of messages | async">
       <strong class="message-sender">{{ message.sender }}</strong> <br />
       {{ message.message }} <br />
       <small class="message-date">{{
