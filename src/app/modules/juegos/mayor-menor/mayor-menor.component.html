@@ -5,10 +5,10 @@
   tabindex="-1"
   aria-labelledby="endGameModalLabel"
   aria-hidden="true"
-  [ngClass]="{ 'show': gameEnded }"
+  [ngClass]="{ show: gameEnded }"
   [ngStyle]="{ display: gameEnded ? 'block' : 'none' }"
-  data-bs-backdrop="static" 
-  data-bs-keyboard="false" 
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
 >
   <div class="modal-dialog">
     <div class="modal-content">
@@ -19,7 +19,9 @@
         El juego ha terminado. Desea volver al inicio?
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" (click)="goHome()">Volver a Inicio</button>
+        <button type="button" class="btn btn-primary" (click)="goHome()">
+          Volver a Inicio
+        </button>
       </div>
     </div>
   </div>
@@ -31,12 +33,12 @@
   <app-btn-salir></app-btn-salir>
 
   <!-- Game Title -->
-  <div class="container text-center my-4">
+  <div class="container header-title text-center my-4">
     <h1>El Juego de Mayor y Menor</h1>
   </div>
 
   <!-- Game Cards Section -->
-  <div class="container">
+  <div class="container cards-section">
     <div class="row justify-content-center">
       <!-- Current Card -->
       <div class="col-lg-5 col-md-6 col-12 text-center">
@@ -59,6 +61,11 @@
       </div>
     </div>
 
+    <!-- Vidas -->
+    <div class="d-flex flex-wrap justify-content-center">
+      <p *ngFor="let item of [].constructor(cantidadDeVidas)" class="corazon"> ❤️ </p>
+    </div>
+
     <!-- Message Area -->
     <div class="row justify-content-center mt-3" style="min-height: 70px">
       <div class="col-lg-8 col-md-10 col-12">
@@ -74,7 +81,7 @@
   </div>
 
   <!-- Game Buttons and Score -->
-  <div class="container text-center mt-4">
+  <div class="container controls-section text-center mt-4">
     <h2>Adivine la próxima carta:</h2>
     <div class="d-flex justify-content-center align-items-center">
       <button
@@ -94,7 +101,7 @@
     </div>
 
     <!-- Score -->
-    <div class="row justify-content-center mt-4">
+    <div class="row justify-content-center">
       <div class="col-auto">
         <h2>Puntuación: {{ userScore }}</h2>
       </div>

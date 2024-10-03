@@ -36,7 +36,7 @@ export class MayorMenorComponent implements OnDestroy, OnInit {
   }
 
   mazo: Card[] = [];
-  cantidadDeRondas = 0;
+  cantidadDeVidas = 6;
   userScore: number = 0;
   mensaje: string = '';
   isCorrect!: boolean;
@@ -66,7 +66,7 @@ export class MayorMenorComponent implements OnDestroy, OnInit {
 
   generateDeck() {
     const palos = ['hearts', 'spades'];
-    const numeros = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
+    const numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
 
     for (const palo of palos) {
       for (const numero of numeros) {
@@ -109,8 +109,9 @@ export class MayorMenorComponent implements OnDestroy, OnInit {
     } else {
       this.isCorrect = false;
       this.mensaje = 'Incorrecto! Intenta nuevamente';
+      this.cantidadDeVidas--;
     }
-    this.cantidadDeRondas++;
+    
     this.renovarMano();
   }
 
@@ -122,7 +123,7 @@ export class MayorMenorComponent implements OnDestroy, OnInit {
       // Limpio mensaje
       this.mensaje = '';
       this.isButtonDisabled = false;
-      if(this.cantidadDeRondas >= 6){
+      if(this.cantidadDeVidas <= 0){
         this.gameEnded = true;
       }
     }, 1700);

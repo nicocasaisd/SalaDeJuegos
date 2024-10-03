@@ -3,10 +3,25 @@
     width: 100vw;
     min-height: 100vh;
     /* overflow: hidden; */
-    background-color: #3d5c4d;
+    background-color: #3a5a40;
     background-repeat: repeat;
 }
 
+.header-title{
+  background-color: #a3b18a;
+}
+
+.cards-section{
+  background-color: #588157;
+}
+
+.controls-section{
+  background-color: #588157;
+}
+
+.corazon{
+  font-size: xx-large;
+}
 
 img{
     /* width: 250px; */
