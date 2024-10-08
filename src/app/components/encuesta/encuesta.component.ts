@@ -1,5 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { addDoc, collection, Timestamp } from '@angular/fire/firestore';
+import { Firestore } from '@angular/fire/firestore/lite';
 import { FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 
@@ -14,6 +16,8 @@ export class EncuestaComponent implements OnInit{
 
   form!: FormGroup;
   options = ['Vista', 'Jugabilidad', 'UI/UX']; 
+
+  constructor(private firestore : Firestore){}
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -70,5 +74,23 @@ export class EncuestaComponent implements OnInit{
     } else {
       console.log('El formulario es invalido');
     }
+  }
+
+  // Enviar mensajes
+  sendMessage(message: string, sender: string): Promise<void> {
+    const encuestas = collection(this.firestore, 'encuestas');
+
+    return addDoc(encuestas, {
+      message,
+      sender,
+      timestamp: Timestamp.now(),
+      date: Date.now(),
+    })
+      .then(() => {
+        console.log('Message sent successfully');
+      })
+      .catch((error) => {
+        console.error('Error sending message: ', error);
+      });
   }
 }
