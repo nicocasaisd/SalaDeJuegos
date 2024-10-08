@@ -72,7 +72,6 @@ export class PreguntadosComponent implements OnInit, OnDestroy {
         this.preguntadosService
           .getLogotypeByName(this.currentPregunta.name)
           .subscribe((data) => {
-            console.log(data[0]);
             this.currentLogotype = data[0];
           });
       }
@@ -86,7 +85,6 @@ export class PreguntadosComponent implements OnInit, OnDestroy {
         this.preguntadosService
           .getLogotypeByName(this.nextPregunta.name)
           .subscribe((data) => {
-            console.log(data[0]);
             this.nextLogotype = data[0];
           });
       }
