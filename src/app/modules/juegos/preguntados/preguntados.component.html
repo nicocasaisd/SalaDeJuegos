@@ -40,6 +40,32 @@
 <div class="contenedor-principal">
   <app-btn-salir></app-btn-salir>
   <div class="container">
-    
+    <div>
+      <img
+        src="logo-quiz.png"
+        alt="Logo Quiz"
+        style="width: 30vw; height: auto; margin-top: 0; margin-bottom: 30px;"
+      />
+    </div>
+    <div
+      *ngIf="!this.gameEnded && this.currentLogotype"
+      class="card container-pregunta"
+    >
+      <p class="card-header">¿A qué marca corresponde el siguiente logotipo?</p>
+      <img src="{{ this.currentLogotype.logo }}" alt="" />
+      <ul class="ul-opciones">
+        <li *ngFor="let item of this.currentPregunta.opciones">
+          <button
+            class="btn-clean"
+            id="{{ item }}"
+            (click)="enviarRespuesta(item)"
+          >
+            {{ item }}
+          </button>
+        </li>
+      </ul>
+    </div>
+    <!-- <p>Puntaje: {{ this.userScore }}</p>
+    <p>Nombre:{{ this.currentPregunta.name }}</p> -->
   </div>
 </div>

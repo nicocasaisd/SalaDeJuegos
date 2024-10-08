@@ -1,47 +1,111 @@
 .contenedor-principal {
-    width: 100vw;
-    min-height: 100vh;
-    background-color: #236d7a;
-    background-repeat: repeat;
+  width: 100vw;
+  min-height: 100vh;
+  background-color: #fefae0;
+  background-repeat: repeat;
+}
+.container {
+  width: 30%;
+  height: auto;
+  margin-top: 0px;
+}
+
+.container-pregunta{
+    padding: 20px;
+}
+
+
+.card img {
+  height: 100px;
+  width: auto;
+  margin: 15px;
+}
+
+.ul-opciones {
+  list-style: none;
+  padding: 15px;
+  margin: 15px;
+  width: 100%;
+}
+
+.btn-clean{
+    font-weight: 600;
+    width: 100%;
+    position: relative;
+    color: #2a292e;
+    background-color: #e9edc9;
+    border-radius: 8px;
+    padding: 15px;
+    transition: all 0.15s ease;
+}
+
+.btn-clean:hover {
+    background-color: #ccd5ae; 
   }
-  .container{
-      width: 40%;
-      height: auto;
-  }
+
+.btn-win{
+    font-weight: 600;
+    width: 100%;
+    position: relative;
+    color: #2a292e;
+    background-color: green;
+    border-radius: 8px;
+    padding: 15px;
+}
+
+.btn-loose{
+    font-weight: 600;
+    width: 100%;
+    position: relative;
+    color: #2a292e;
+    background-color: red;
+    border-radius: 8px;
+    padding: 15px;
+}
+
+.container-pregunta {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
 
 /* Modal */
 .modal {
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
 }
 
 .modal-content {
-    background-image: linear-gradient(to top, #191919 0%, rgb(63, 63, 63) 100%); /* Un gradiente suave */
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    width: 90%;
-    max-width: 500px;
-    text-align: center;
-    color: white;
+  background-image: linear-gradient(
+    to top,
+    #191919 0%,
+    rgb(63, 63, 63) 100%
+  ); /* Un gradiente suave */
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 500px;
+  text-align: center;
+  color: white;
 }
 
 .modal-content button {
-    padding: 10px 20px;
-    margin-top: 15px;
-    background-color: #ffffff;
-    color: #333;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+  padding: 10px 20px;
+  margin-top: 15px;
+  background-color: #ffffff;
+  color: #333;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
-
-
