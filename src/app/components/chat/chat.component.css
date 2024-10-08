@@ -3,6 +3,7 @@
     background-color: rgba(255, 255, 255, 0.8);
     width: 80%;
     height: 80%;
+    max-height: 80%;
     margin: auto;
     padding: 10px;
     justify-content: center;
@@ -11,8 +12,8 @@
 }
 
 .contenedor-messages{
-    height: 90%;
-    overflow-y: auto;
+    height: 70vh;
+    overflow-y:scroll;
 }
 
 .contenedor-input{

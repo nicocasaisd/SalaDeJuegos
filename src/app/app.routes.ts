@@ -13,6 +13,7 @@ export const routes: Routes = [
     {path:'login', component: LoginComponent},
     {path:'register', component: RegisterComponent},
     {path:'chat', component: ChatComponent},
+    
     {path:'juegos', loadChildren: ()=> import('./modules/juegos/juegos.module').then(m => m.JuegosModule)},
     {path: '**', component: ErrorComponent},
 
