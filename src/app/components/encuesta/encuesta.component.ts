@@ -4,6 +4,8 @@ import { addDoc, collection, Timestamp } from '@angular/fire/firestore';
 import { Firestore } from '@angular/fire/firestore/lite';
 import { FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
+import { EncuestaService} from '../../services/encuesta.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-encuesta',
@@ -17,7 +19,7 @@ export class EncuestaComponent implements OnInit{
   form!: FormGroup;
   options = ['Vista', 'Jugabilidad', 'UI/UX']; 
 
-  constructor(private firestore : Firestore){}
+  constructor(private encuestaService : EncuestaService, private authService : AuthService){}
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -28,7 +30,7 @@ export class EncuestaComponent implements OnInit{
       nro_telefono: new FormControl('', [Validators.required, Validators.pattern('^[0-9]*$'), Validators.maxLength(10)]),
       pregunta1: new FormControl('', [Validators.required]), // radiobuttons
       pregunta2: new FormControl('', [Validators.required]), // textbox
-      pregunta3: new FormArray([])  // checkbox
+      pregunta3: new FormArray([], Validators.required)  // checkbox
 
     }
     );
@@ -71,26 +73,11 @@ export class EncuestaComponent implements OnInit{
         .map((checked: boolean, i: number) => checked ? this.options[i] : null)
         .filter((v: string | null) => v !== null);
       console.log('Formulario enviado correctamente', { ...this.form.value, opcionesSeleccionadas });
+      this.encuestaService.sendEncuesta(this.form.value, opcionesSeleccionadas, this.authService.getLoggedUser())
     } else {
       console.log('El formulario es invalido');
     }
   }
 
-  // Enviar mensajes
-  sendMessage(message: string, sender: string): Promise<void> {
-    const encuestas = collection(this.firestore, 'encuestas');
-
-    return addDoc(encuestas, {
-      message,
-      sender,
-      timestamp: Timestamp.now(),
-      date: Date.now(),
-    })
-      .then(() => {
-        console.log('Message sent successfully');
-      })
-      .catch((error) => {
-        console.error('Error sending message: ', error);
-      });
-  }
+  
 }
