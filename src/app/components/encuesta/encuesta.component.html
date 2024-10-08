@@ -1,41 +1,135 @@
 <div class="container">
   <div class="card p-4 mt-4">
     <form [formGroup]="form" (ngSubmit)="enviarForm()">
-        <div class="row">
-            <div class="form-control-group col-5">
-              <label class="form-label" for="nombre">Nombre</label>
-              <input type="text" class="form-control" id="nombre" formControlName="nombre">
-              <small class="text-danger">
-                <!-- {{usuario?.getError('usuarioExiste')}} -->
-              </small>
-            </div>
-    
-            <div class="form-control-group col-5">
-              <label class="form-label" for="nombre">Nombre</label>
-              <input type="text" class="form-control" id="nombre" formControlName="nombre">
-              <ng-container *ngIf="nombre?.hasError('pattern')">
-                <small class="text-danger">Sólo debe contener solo letras</small>
-              </ng-container>
-            </div>
+      <div class="row">
+        <div class="form-control-group col-5">
+          <label class="form-label" for="nombre">Nombre</label>
+          <input
+            type="text"
+            class="form-control"
+            id="nombre"
+            formControlName="nombre"
+          />
+          <ng-container *ngIf="nombre?.hasError('pattern')">
+            <small class="text-danger">Sólo debe contener solo letras</small>
+          </ng-container>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-control-group col-5">
+          <label class="form-label" for="apellido">Apellido</label>
+          <input
+            type="text"
+            class="form-control"
+            id="apellido"
+            formControlName="apellido"
+          />
+          <ng-container *ngIf="apellido?.hasError('pattern')">
+            <small class="text-danger">Sólo debe contener solo letras</small>
+          </ng-container>
+        </div>
+      </div>
+
+      <div class="form-control-group col-5">
+        <label class="form-label" for="edad">Edad</label>
+        <input
+          type="number"
+          class="form-control"
+          id="edad"
+          formControlName="edad"
+        />
+        <ng-container *ngIf="edad?.hasError('min')">
+          <small class="text-danger">Debe ser mayor de edad</small>
+        </ng-container>
+        <ng-container *ngIf="edad?.hasError('max')">
+          <small class="text-danger">Debe ser menor de 99 años</small>
+        </ng-container>
+      </div>
+
+      <div class="form-control-group col-5">
+        <label class="form-label" for="nro_telefono">Número de teléfono</label>
+        <input
+          type="text"
+          class="form-control"
+          id="nro_telefono"
+          formControlName="nro_telefono"
+          maxlength="10"
+        />
+        <!-- <ng-container *ngIf="nro_telefono?.hasError('maxLength')">
+            <small class="text-danger">No debe tener más de 10 caracteres</small>
+          </ng-container> -->
+        <ng-container *ngIf="nro_telefono?.hasError('pattern')">
+          <small class="text-danger">Sólo debe contener números</small>
+        </ng-container>
+      </div>
+
+      <!-- Pregunta 1 -->
+      <div class="form-control-group col-5">
+        <label for="pregunta1"
+          >¿Cuál de los juegos de esta web le resultó más agradable?</label
+        >
+        <div>
+          <label
+            ><input type="radio" formControlName="pregunta1" value="Ahorcado" />
+            Ahorcado</label
+          >
+          <label
+            ><input
+              type="radio"
+              formControlName="pregunta1"
+              value="Mayor o Menor"
+            />
+            Mayor o Menor</label
+          >
+          <label
+            ><input
+              type="radio"
+              formControlName="pregunta1"
+              value="Preguntados"
+            />
+            Preguntados</label
+          >
+          <label
+            ><input type="radio" formControlName="pregunta1" value="Wordle" />
+            Wordle</label
+          >
+        </div>
+      </div>
+
+      <!-- Random pregunta 2: Textbox -->
+      <div class="form-control-group col-5">
+        <label for="pregunta2"
+          >Si tuviera que mejorar algo del sitio, ¿qué sugeriría?</label
+        >
+        <input id="pregunta2" formControlName="pregunta2" type="text" />
+        <div *ngIf="pregunta2?.invalid">
+          <small class="text-danger">Debe completar esta pregunta</small>
+        </div>
+      </div>
+
+      <!-- Random pregunta 3: Checkbox -->
+      <div class="form-control-group col-5">
+        <label for="pregunta3"
+          >¿Qué fue lo que más le gustó del sitio? Marque todas las que
+          considere</label
+        >
+        <div formArrayName="pregunta3">
+          <div *ngFor="let option of options; let i = index">
+            <input
+              type="checkbox"
+              [formControlName]="i"
+            />
+            <span>{{ option }}</span>
+            <br />
           </div>
-    
-          <div class="row">
-            <div class="form-control-group col-5">
-              <label class="form-label" for="mail">Mail</label>
-              <input type="email" class="form-control" id="mail" formControlName="mail">
-              <ng-container *ngIf="mail?.hasError('mail')">
-                <small class="text-danger">Formato inválido</small>
-              </ng-container>
-            </div>
-    
-            <div class="form-control-group col-5">
-              <label class="form-label" for="edad">Edad</label>
-              <input type="number" class="form-control" id="edad" formControlName="edad">
-              <ng-container *ngIf="edad?.hasError('min')">
-                <small class="text-danger">Debe ser mayor de edad</small>
-              </ng-container>
-            </div>
-          </div>
+        </div>
+        <div *ngIf="pregunta3.invalid && pregunta3.touched">
+          This field is required
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" [disabled]="form.invalid">Submit</button>
     </form>
   </div>
 </div>
