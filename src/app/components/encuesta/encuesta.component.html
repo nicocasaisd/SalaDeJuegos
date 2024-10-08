@@ -1,1 +1,41 @@
-<p>encuesta works!</p>
+<div class="container">
+  <div class="card p-4 mt-4">
+    <form [formGroup]="form" (ngSubmit)="enviarForm()">
+        <div class="row">
+            <div class="form-control-group col-5">
+              <label class="form-label" for="nombre">Nombre</label>
+              <input type="text" class="form-control" id="nombre" formControlName="nombre">
+              <small class="text-danger">
+                <!-- {{usuario?.getError('usuarioExiste')}} -->
+              </small>
+            </div>
+    
+            <div class="form-control-group col-5">
+              <label class="form-label" for="nombre">Nombre</label>
+              <input type="text" class="form-control" id="nombre" formControlName="nombre">
+              <ng-container *ngIf="nombre?.hasError('pattern')">
+                <small class="text-danger">Sólo debe contener solo letras</small>
+              </ng-container>
+            </div>
+          </div>
+    
+          <div class="row">
+            <div class="form-control-group col-5">
+              <label class="form-label" for="mail">Mail</label>
+              <input type="email" class="form-control" id="mail" formControlName="mail">
+              <ng-container *ngIf="mail?.hasError('mail')">
+                <small class="text-danger">Formato inválido</small>
+              </ng-container>
+            </div>
+    
+            <div class="form-control-group col-5">
+              <label class="form-label" for="edad">Edad</label>
+              <input type="number" class="form-control" id="edad" formControlName="edad">
+              <ng-container *ngIf="edad?.hasError('min')">
+                <small class="text-danger">Debe ser mayor de edad</small>
+              </ng-container>
+            </div>
+          </div>
+    </form>
+  </div>
+</div>
