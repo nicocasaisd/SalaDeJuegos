@@ -39,7 +39,9 @@ export class PreguntadosComponent implements OnInit, OnDestroy {
 
   resetGame() {
     this.currentLogotype = null;
-    this.preguntas = this.preguntadosService.getPreguntas();
+    this.preguntas = [... this.preguntadosService.getPreguntas()];
+    console.log(this.preguntas);
+    console.log(this.preguntadosService.getPreguntas());
     this.loadFirstPregunta();
     this.userScore = 0;
     this.gameEnded = false;
@@ -50,7 +52,7 @@ export class PreguntadosComponent implements OnInit, OnDestroy {
     this.juego.setModuleLoaded(true);
     console.log('Se crea el componente');
 
-    this.preguntas = this.preguntadosService.getPreguntas();
+    this.preguntas = [... this.preguntadosService.getPreguntas()];
     this.loadFirstPregunta();
   }
 
