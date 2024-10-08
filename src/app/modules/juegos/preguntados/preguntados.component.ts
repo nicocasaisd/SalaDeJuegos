@@ -38,6 +38,7 @@ export class PreguntadosComponent implements OnInit, OnDestroy {
   }
 
   resetGame() {
+    this.currentLogotype = null;
     this.preguntas = this.preguntadosService.getPreguntas();
     this.loadFirstPregunta();
     this.userScore = 0;
@@ -110,7 +111,7 @@ export class PreguntadosComponent implements OnInit, OnDestroy {
       setTimeout(() => {
         this.currentPregunta = this.nextPregunta;
         this.currentLogotype = this.nextLogotype;
-      }, 1500);
+      }, 1000);
     } else {
       if (boton) {
         boton.classList.add('btn-loose');

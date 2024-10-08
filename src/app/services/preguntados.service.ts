@@ -58,13 +58,9 @@ export class PreguntadosService {
   //   return this.http.get<any>('https://pokeapi.co/api/v2/pokemon/'+index);
   // }
 
-  getAllLogotypes(){
+  getLogotypes(){
     return this.http.get<any>('https://logotypes.dev/all');
   }
-/*   getRandomLogotype(){
-    const index = Math.floor(Math.random() * 99 +1);
-    return this.http.get<any>('https://pokeapi.co/api/v2/pokemon/'+index);
-  } */
 
   getLogotypeByName(name: string){
     return this.http.get<any>('https://logotypes.dev/'+name+'/data');

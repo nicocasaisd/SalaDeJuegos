@@ -21,6 +21,7 @@
             gameWon ? "¡Felicidades! Has ganado." : "Lo siento, has perdido."
           }}
         </p>
+        <p>Puntaje: {{this.userScore}}</p>
         El juego ha terminado. Desea volver al inicio?
       </div>
 
@@ -52,7 +53,9 @@
       class="card container-pregunta"
     >
       <p class="card-header">¿A qué marca corresponde el siguiente logotipo?</p>
-      <img src="{{ this.currentLogotype.logo }}" alt="" />
+      <div class="container-img">
+        <img src="{{ this.currentLogotype.logo }}" alt="" />
+      </div>
       <ul class="ul-opciones">
         <li *ngFor="let item of this.currentPregunta.opciones">
           <button
