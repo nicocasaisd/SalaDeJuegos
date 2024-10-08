@@ -6,6 +6,7 @@ import { FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } fr
 import { FormsModule } from '@angular/forms';
 import { EncuestaService} from '../../services/encuesta.service';
 import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-encuesta',
@@ -18,8 +19,9 @@ export class EncuestaComponent implements OnInit{
 
   form!: FormGroup;
   options = ['Vista', 'Jugabilidad', 'UI/UX']; 
+  encuestaRespondida = false;
 
-  constructor(private encuestaService : EncuestaService, private authService : AuthService){}
+  constructor(private encuestaService : EncuestaService, private authService : AuthService, private router : Router){}
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -74,6 +76,9 @@ export class EncuestaComponent implements OnInit{
         .filter((v: string | null) => v !== null);
       console.log('Formulario enviado correctamente', { ...this.form.value, opcionesSeleccionadas });
       this.encuestaService.sendEncuesta(this.form.value, opcionesSeleccionadas, this.authService.getLoggedUser())
+      setTimeout(()=>this.router.navigate(['/home']), 3000);
+      
+      this.encuestaRespondida = true;
     } else {
       console.log('El formulario es invalido');
     }

@@ -1,6 +1,8 @@
 <div class="container">
   <div class="card p-4 mt-4">
     <h1>Encuesta de satisfacción</h1>
+    @if (!this.encuestaRespondida) {
+
     <form [formGroup]="form" (ngSubmit)="enviarForm()">
       <div class="row">
         <div class="form-control-group col-5">
@@ -116,10 +118,7 @@
         >
         <div formArrayName="pregunta3">
           <div *ngFor="let option of options; let i = index">
-            <input
-              type="checkbox"
-              [formControlName]="i"
-            />
+            <input type="checkbox" [formControlName]="i" />
             <span>{{ option }}</span>
             <br />
           </div>
@@ -132,5 +131,9 @@
       <!-- Submit Button -->
       <button type="submit" [disabled]="form.invalid">Submit</button>
     </form>
+    }@else {
+        <p>Gracias por responder la encuesta!</p>
+        <p>En unos segundos será redirigido al home...</p>
+    }
   </div>
 </div>
