@@ -65,16 +65,6 @@ export class AhorcadoComponent implements OnInit, OnDestroy {
   }
 
   resetHangman(){
-    // const hangman = document.getElementById("dibujo-ahorcado");
-    // if(hangman){
-    //   console.log(hangman);
-    //   for(let i=0; i < hangman.children.length; i++){
-    //     console.log(i);
-    //     console.log(hangman.children[i]);
-    //     (hangman.children[i] as HTMLElement).style.visibility = 'visible';
-    //   }
-    // }
-
     for(let i=0; i < this.partesDelAhorcado.length; i++){
       const part = document.getElementById(this.partesDelAhorcado[i]);
       if(part){
@@ -100,7 +90,7 @@ export class AhorcadoComponent implements OnInit, OnDestroy {
     this.wordLength = this.currentWord.length;
     // Inicializamos array de booleanos
     this.revealedLetters = new Array(this.currentWord.length).fill(false);
-    this.revealedLetters[1] = true; // borar
+    // this.revealedLetters[1] = true; // borar
     console.log(this.currentWordList);
     console.log(this.revealedLetters);
   }
