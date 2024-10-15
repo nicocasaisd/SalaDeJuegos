@@ -51,6 +51,7 @@ export class AhorcadoComponent implements OnInit, OnDestroy {
     this.gameEnded = false;
     this.gameWon = false;
     this.enableAllButtons();
+    this.resetHangman();
   }
 
   drawHangman() {
@@ -60,6 +61,25 @@ export class AhorcadoComponent implements OnInit, OnDestroy {
     // Chequeamos si vuelve un elemento
     if (part) {
       part.style.visibility = 'visible';
+    }
+  }
+
+  resetHangman(){
+    // const hangman = document.getElementById("dibujo-ahorcado");
+    // if(hangman){
+    //   console.log(hangman);
+    //   for(let i=0; i < hangman.children.length; i++){
+    //     console.log(i);
+    //     console.log(hangman.children[i]);
+    //     (hangman.children[i] as HTMLElement).style.visibility = 'visible';
+    //   }
+    // }
+
+    for(let i=0; i < this.partesDelAhorcado.length; i++){
+      const part = document.getElementById(this.partesDelAhorcado[i]);
+      if(part){
+        part.style.visibility = 'hidden';
+      }
     }
   }
 
@@ -129,7 +149,7 @@ export class AhorcadoComponent implements OnInit, OnDestroy {
   enableAllButtons() {
     this.letras.forEach((letter) => {
       const button = document.getElementById(
-        'letra-' + letter
+        'letra-' + letter.toLowerCase()
       ) as HTMLButtonElement;
 
       if (button) {

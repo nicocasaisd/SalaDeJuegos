@@ -51,7 +51,7 @@
     </div>
     <!-- Dibujo del ahorcado -->
 
-    <div class="text-center dibujo-ahorcado">
+    <div id="dibujo-ahorcado" class="text-center dibujo-ahorcado">
       <!-- SVG for hangman drawing -->
       <svg
         width="200"
@@ -210,7 +210,7 @@
       <button
         (click)="revealLetter(letra)"
         class="container-letra d-flex justify-content-center align-items-center"
-        id="letra-{{ letra }}"
+        id="letra-{{ letra.toLowerCase() }}"
       >
         {{ letra }}
       </button>
