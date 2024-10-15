@@ -5,10 +5,10 @@
   tabindex="-1"
   aria-labelledby="endGameModalLabel"
   aria-hidden="true"
-  [ngClass]="{ 'show': gameEnded }"
+  [ngClass]="{ show: gameEnded }"
   [ngStyle]="{ display: gameEnded ? 'block' : 'none' }"
-  data-bs-backdrop="static" 
-  data-bs-keyboard="false" 
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
 >
   <div class="modal-dialog">
     <div class="modal-content">
@@ -16,13 +16,23 @@
         <h5 class="modal-title" id="endGameModalLabel">Juego terminado</h5>
       </div>
       <div class="modal-body">
-        <p>{{ gameWon ? '¡Felicidades! Has ganado.' : 'Lo siento, has perdido. La palabra era: ' + currentWord }}</p>
+        <p>
+          {{
+            gameWon
+              ? "¡Felicidades! Has ganado."
+              : "Lo siento, has perdido. La palabra era: " + currentWord
+          }}
+        </p>
         El juego ha terminado. Desea volver al inicio?
       </div>
-      
+
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" (click)="goHome()">Volver a Inicio</button>
-        <button type="button" class="btn btn-primary" (click)="resetGame()">Jugar de nuevo</button>
+        <button type="button" class="btn btn-primary" (click)="goHome()">
+          Volver a Inicio
+        </button>
+        <button type="button" class="btn btn-primary" (click)="resetGame()">
+          Jugar de nuevo
+        </button>
       </div>
     </div>
   </div>
@@ -31,14 +41,17 @@
 <!-- Contenedor Principal -->
 <div class="contenedor-principal">
   <app-btn-salir></app-btn-salir>
-  <div class="container justify-content-center">
-    
+  <div class="d-flex flex-column align-items-center justify-content-center">
     <div>
-      <img style="width: 30vw; height: auto; margin-top: 0;" src="/header-ahorcado.png" alt="">
+      <img
+        style="width: 30vw; height: auto; margin-top: 0"
+        src="/header-ahorcado.png"
+        alt=""
+      />
     </div>
     <!-- Dibujo del ahorcado -->
 
-    <div class="container text-center">
+    <div class="text-center dibujo-ahorcado">
       <!-- SVG for hangman drawing -->
       <svg
         width="200"
@@ -160,49 +173,49 @@
           visibility="hidden"
         />
       </svg>
-    </div>
 
-    <div class="d-flex flex-wrap justify-content-center">
-      <div
-        *ngFor="let letter of currentWordList; let i = index"
-        class="text-center"
-      >
-        <div id="letra{{ i }}">
-          <!-- Condicional -->
-          <ng-container *ngIf="revealedLetters[i]; else hiddenLetter">
-            <span class="letra-ahorcado">{{ letter }}</span>
-          </ng-container>
-          <ng-template #hiddenLetter>
-            <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
-              <!-- viewBox="0 0 200 100" -->
-              <line
-                x1="10"
-                y1="80"
-                x2="90"
-                y2="80"
-                stroke="black"
-                stroke-width="4"
-              />
-            </svg>
-          </ng-template>
+      <!-- Palabra -->
+
+      <div class="d-flex flex-wrap justify-content-center">
+        <div
+          *ngFor="let letter of currentWordList; let i = index"
+          class="text-center"
+        >
+          <div id="letra{{ i }}">
+            <!-- Condicional -->
+            <ng-container *ngIf="revealedLetters[i]; else hiddenLetter">
+              <span class="letra-ahorcado">{{ letter }}</span>
+            </ng-container>
+            <ng-template #hiddenLetter>
+              <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
+                <!-- viewBox="0 0 200 100" -->
+                <line
+                  x1="10"
+                  y1="80"
+                  x2="90"
+                  y2="80"
+                  stroke="black"
+                  stroke-width="4"
+                />
+              </svg>
+            </ng-template>
+          </div>
         </div>
       </div>
     </div>
-    <!-- Palabra -->
 
-    <div class="text-center mt-4 d-flex">
-      <div class="d-flex flex-wrap justify-content-center contenedor-letras">
-        @for (letra of this.letras; track $index) {
-        <button
-          (click)="revealLetter(letra)"
-          class="container-letra d-flex justify-content-center align-items-center"
-          id="letra-{{ letra }}"
-        >
-          {{ letra }}
-        </button>
-        }
-      </div>
+    <!-- <div class="text-center mt-4 d-flex"> -->
+    <div class="d-flex flex-wrap justify-content-center contenedor-letras">
+      @for (letra of this.letras; track $index) {
+      <button
+        (click)="revealLetter(letra)"
+        class="container-letra d-flex justify-content-center align-items-center"
+        id="letra-{{ letra }}"
+      >
+        {{ letra }}
+      </button>
+      }
     </div>
+    <!-- </div> -->
   </div>
 </div>
-

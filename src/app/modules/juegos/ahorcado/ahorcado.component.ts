@@ -70,7 +70,7 @@ export class AhorcadoComponent implements OnInit, OnDestroy {
 
   initializeAlphabet() {
     for (let i = 0; i < 26; i++) {
-      this.letras.push(String.fromCharCode(97 + i));
+      this.letras.push(String.fromCharCode(65 + i));
     }
   }
 
