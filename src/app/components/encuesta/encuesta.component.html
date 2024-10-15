@@ -67,7 +67,7 @@
       </div>
 
       <!-- Pregunta 1 -->
-      <div class="form-control-group col-5">
+      <div class="form-control-group col-5 mt-3">
         <label for="pregunta1"
           >¿Cuál de los juegos de esta web le resultó más agradable?</label
         >
@@ -100,7 +100,7 @@
       </div>
 
       <!-- Random pregunta 2: Textbox -->
-      <div class="form-control-group col-5">
+      <div class="form-control-group col-5 mt-3">
         <label for="pregunta2"
           >Si tuviera que mejorar algo del sitio, ¿qué sugeriría?</label
         >
@@ -111,7 +111,7 @@
       </div>
 
       <!-- Random pregunta 3: Checkbox -->
-      <div class="form-control-group col-5">
+      <div class="form-control-group col-5 mt-3">
         <label for="pregunta3"
           >¿Qué fue lo que más le gustó del sitio? Marque todas las que
           considere</label
@@ -124,12 +124,12 @@
           </div>
         </div>
         <div *ngIf="pregunta3.invalid && pregunta3.touched">
-          This field is required
+          Este campo es obligatorio.
         </div>
       </div>
 
       <!-- Submit Button -->
-      <button type="submit" [disabled]="form.invalid">Submit</button>
+      <button class="btn btn-secondary mt-3" type="submit" [disabled]="form.invalid">Enviar</button>
     </form>
     }@else {
         <p>Gracias por responder la encuesta!</p>

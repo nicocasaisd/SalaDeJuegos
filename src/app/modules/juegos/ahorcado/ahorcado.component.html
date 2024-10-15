@@ -31,7 +31,11 @@
 <!-- Contenedor Principal -->
 <div class="contenedor-principal">
   <app-btn-salir></app-btn-salir>
-  <div class="container">
+  <div class="container justify-content-center">
+    
+    <div>
+      <img style="width: 30vw; height: auto; margin-top: 0;" src="/header-ahorcado.png" alt="">
+    </div>
     <!-- Dibujo del ahorcado -->
 
     <div class="container text-center">
@@ -186,8 +190,8 @@
     </div>
     <!-- Palabra -->
 
-    <div class="text-center mt-4">
-      <div class="d-flex flex-wrap justify-content-center">
+    <div class="text-center mt-4 d-flex">
+      <div class="d-flex flex-wrap justify-content-center contenedor-letras">
         @for (letra of this.letras; track $index) {
         <button
           (click)="revealLetter(letra)"

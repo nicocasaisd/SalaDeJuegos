@@ -1,8 +1,10 @@
 .contenedor-principal {
   width: 100vw;
   height: 100vh;
-  background-color: #236d7a;
-  background-repeat: repeat;
+  max-height: 100vh;
+  /* background-color: #236d7a; */
+  background-image: url("/hangman-landscape.png");
+  background-size: contain;
 }
 
 .container-letra {
@@ -25,6 +27,10 @@
     width: 100px;
     height: 100px;
     font-size: 60px;
+}
+
+.contenedor-letras{
+  width: 70%;
 }
 
 
