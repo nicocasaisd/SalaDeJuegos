@@ -39,7 +39,7 @@ export class PreguntadosComponent implements OnInit, OnDestroy {
 
   resetGame() {
     this.currentLogotype = null;
-    this.preguntas = [... this.preguntadosService.getPreguntas()];
+    this.preguntas = [...this.preguntadosService.getPreguntas()];
     console.log(this.preguntas);
     console.log(this.preguntadosService.getPreguntas());
     this.loadFirstPregunta();
@@ -52,7 +52,7 @@ export class PreguntadosComponent implements OnInit, OnDestroy {
     this.juego.setModuleLoaded(true);
     console.log('Se crea el componente');
 
-    this.preguntas = [... this.preguntadosService.getPreguntas()];
+    this.preguntas = [...this.preguntadosService.getPreguntas()];
     this.loadFirstPregunta();
   }
 
@@ -93,6 +93,7 @@ export class PreguntadosComponent implements OnInit, OnDestroy {
     } else {
       this.gameWon = true;
       this.gameEnded = true;
+      this.juego.sendPuntaje(this.userScore); // enviamos el puntaje
     }
   }
 
@@ -116,8 +117,10 @@ export class PreguntadosComponent implements OnInit, OnDestroy {
       if (boton) {
         boton.classList.add('btn-loose');
       }
-      setTimeout(()=> this.gameEnded = true, 1000);
-      
+      setTimeout(() => {
+        this.gameEnded = true;
+        this.juego.sendPuntaje(this.userScore); // enviamos el puntaje
+      }, 1000);
     }
   }
 }

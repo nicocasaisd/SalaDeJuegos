@@ -126,12 +126,12 @@ export class WordleComponent implements OnInit, OnDestroy {
     this.guesses.push(this.currentGuess);
   }
 
-  isGameOver() {
-    return (
-      this.currentGuessIndex >= this.maxGuesses ||
-      this.guesses.includes(this.wordToGuess)
-    );
-  }
+  // isGameOver() {
+  //   return (
+  //     this.currentGuessIndex >= this.maxGuesses ||
+  //     this.guesses.includes(this.wordToGuess)
+  //   );
+  // }
 
   resetGame() {
 

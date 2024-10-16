@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { addDoc, collection, Firestore, Timestamp } from '@angular/fire/firestore';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root',
@@ -6,7 +8,7 @@ import { Injectable } from '@angular/core';
 export class JuegosService {
   private isModuleLoaded = false;
 
-  constructor() {}
+  constructor(private firestore : Firestore, private auth : AuthService) {}
 
   setModuleLoaded(status: boolean) {
     this.isModuleLoaded = status;
@@ -17,7 +19,20 @@ export class JuegosService {
   }
 
   // Guardar Puntaje
-  sendPuntaje(loggedUser: string, userScore : number) {
-    
+  sendPuntaje(userScore : number) : Promise<void> {
+    const puntajes = collection(this.firestore, 'puntajes');
+
+    return addDoc(puntajes, {
+      loggedUser : this.auth.loggedUser,
+      userScore,
+      fecha: Timestamp.now(),
+    })
+    .then(()=>{
+      console.log('Puntaje enviado correctamente.');
+    })
+    .catch(()=>{
+      console.error('Error sending message: ');
+    })
+
   }
 }

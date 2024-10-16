@@ -51,7 +51,7 @@ export class EncuestaService {
       fecha: Timestamp.now(),
     })
       .then(() => {
-        console.log('Encuesta sent successfully');
+        console.log('Encuesta enviada correctamente.');
       })
       .catch((error) => {
         console.error('Error sending message: ', error);
