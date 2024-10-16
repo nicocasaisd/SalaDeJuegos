@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class JuegosService {
-
   private isModuleLoaded = false;
-  
-  constructor() { }
+
+  constructor() {}
 
   setModuleLoaded(status: boolean) {
     this.isModuleLoaded = status;
@@ -15,5 +14,10 @@ export class JuegosService {
 
   getModuleLoaded(): boolean {
     return this.isModuleLoaded;
+  }
+
+  // Guardar Puntaje
+  sendPuntaje(loggedUser: string, userScore : number) {
+    
   }
 }
