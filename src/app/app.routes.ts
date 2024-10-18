@@ -15,6 +15,7 @@ export const routes: Routes = [
     {path:'register', component: RegisterComponent},
     {path:'chat', component: ChatComponent},
     {path:'encuesta', component: EncuestaComponent},
+    {path:'puntajes', loadComponent: ()=> import('./components/puntajes/puntajes.component').then(c => c.PuntajesComponent)},
     {path:'juegos', loadChildren: ()=> import('./modules/juegos/juegos.module').then(m => m.JuegosModule)},
     {path: '**', component: ErrorComponent},
 
