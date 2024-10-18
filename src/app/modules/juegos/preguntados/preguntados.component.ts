@@ -93,7 +93,7 @@ export class PreguntadosComponent implements OnInit, OnDestroy {
     } else {
       this.gameWon = true;
       this.gameEnded = true;
-      this.juego.sendPuntaje(this.userScore); // enviamos el puntaje
+      this.juego.sendPuntaje(this.userScore, 'preguntados'); // enviamos el puntaje
     }
   }
 
@@ -119,7 +119,7 @@ export class PreguntadosComponent implements OnInit, OnDestroy {
       }
       setTimeout(() => {
         this.gameEnded = true;
-        this.juego.sendPuntaje(this.userScore); // enviamos el puntaje
+        this.juego.sendPuntaje(this.userScore, 'preguntados'); // enviamos el puntaje
       }, 1000);
     }
   }

@@ -3,6 +3,7 @@ import { BtnSalirComponent } from '../btn-salir/btn-salir.component';
 import { CommonModule } from '@angular/common';
 import { JuegosService } from '../../../services/juegos.service';
 import { Router } from '@angular/router';
+import { user } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-wordle',
@@ -13,6 +14,7 @@ import { Router } from '@angular/router';
 })
 export class WordleComponent implements OnInit, OnDestroy {
   // Variables
+  userScore : number = 0;
   maxGuesses: number = 6;
   wordLength: number = 5;
   currentGuessIndex: number = 0;
@@ -103,10 +105,13 @@ export class WordleComponent implements OnInit, OnDestroy {
     // Revisamos si termino el juego
     if (this.currentGuessIndex >= this.maxGuesses) {
       this.gameEnded = true;
+      this.juego.sendPuntaje(this.userScore, 'wordle');
     } else if (this.currentGuess === this.wordToGuess) {
       this.gameEnded = true;
       this.gameWon = true;
+      this.juego.sendPuntaje(this.userScore, 'wordle');
     }
+    
   }
 
   checkGuess() {
@@ -115,15 +120,18 @@ export class WordleComponent implements OnInit, OnDestroy {
       if (letter === this.wordToGuess[i]) {
         this.tiles[this.currentGuessIndex][i] = { letter, state: 'correct' };
         //this.updateLetterState(letter, 'correct');
+        this.userScore += (6 - this.currentGuessIndex)/5;
       } else if (this.wordToGuess.includes(letter)) {
         this.tiles[this.currentGuessIndex][i] = { letter, state: 'present' };
         //this.updateLetterState(letter, 'present');
+        this.userScore += 0.2;
       } else {
         this.tiles[this.currentGuessIndex][i] = { letter, state: 'absent' };
         //this.updateLetterState(letter, 'absent');
       }
     }
     this.guesses.push(this.currentGuess);
+    this.userScore = Math.round(this.userScore);
   }
 
   // isGameOver() {
@@ -140,7 +148,6 @@ export class WordleComponent implements OnInit, OnDestroy {
   this.guesses = [];
   this.wordToGuess = this.getRandomWord();
   this.initializeTiles();
-  //this.initializeAlphabet();
   this.gameEnded = false;
   this.gameWon = false;
 

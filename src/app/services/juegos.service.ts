@@ -19,11 +19,12 @@ export class JuegosService {
   }
 
   // Guardar Puntaje
-  sendPuntaje(userScore : number) : Promise<void> {
+  sendPuntaje(userScore : number, nombreDeJuego : string) : Promise<void> {
     const puntajes = collection(this.firestore, 'puntajes');
 
     return addDoc(puntajes, {
       loggedUser : this.auth.loggedUser,
+      nombreDeJuego,
       userScore,
       fecha: Timestamp.now(),
     })

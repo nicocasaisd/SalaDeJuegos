@@ -26,6 +26,8 @@ export class AhorcadoComponent implements OnInit, OnDestroy {
   wordLength!: number;
   revealedLetters: boolean[] = [];
 
+  userScore : number = 0;
+
   partesDelAhorcado = [
     'rope',
     'head',
@@ -50,6 +52,7 @@ export class AhorcadoComponent implements OnInit, OnDestroy {
     this.cantidadDeErrores = 0;
     this.gameEnded = false;
     this.gameWon = false;
+    this.userScore = 0;
     this.enableAllButtons();
     this.resetHangman();
   }
@@ -106,6 +109,7 @@ export class AhorcadoComponent implements OnInit, OnDestroy {
       if (letter === this.currentWordList[i]) {
         this.revealedLetters[i] = true;
         letterFound = true;
+        this.userScore ++;
       }
     }
     if (!letterFound) {
@@ -119,9 +123,11 @@ export class AhorcadoComponent implements OnInit, OnDestroy {
     // Revisamos si termino el juego
     if (this.cantidadDeErrores >= 7) {
       this.gameEnded = true;
+      this.juego.sendPuntaje(this.userScore, 'ahorcado');
     } else if(this.revealedLetters.every((value) => value === true)){
       this.gameEnded = true;
       this.gameWon = true;
+      this.juego.sendPuntaje(this.userScore, 'ahorcado');
     }
   }
 

@@ -51,7 +51,7 @@ export class MayorMenorComponent implements OnDestroy, OnInit {
   gameEnded = false;
 
   goHome() {
-    this.router.navigate(['/home']); // Assuming you have a home route set up
+    this.router.navigate(['/home']); 
   }
 
   ngOnInit(): void {
@@ -86,6 +86,7 @@ export class MayorMenorComponent implements OnDestroy, OnInit {
     } else {
       console.log('No hay más cartas');
       this.gameEnded = true;
+      this.juego.sendPuntaje(this.userScore, 'mayor-o-menor');
     }
   }
 
@@ -125,6 +126,7 @@ export class MayorMenorComponent implements OnDestroy, OnInit {
       this.isButtonDisabled = false;
       if(this.cantidadDeVidas <= 0){
         this.gameEnded = true;
+        this.juego.sendPuntaje(this.userScore, 'mayor-o-menor');
       }
     }, 1700);
     // Revelo la carta
