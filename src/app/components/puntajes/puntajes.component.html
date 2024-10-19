@@ -15,9 +15,10 @@
   <table class="table table-dark table-striped">
     <thead class="thead-light">
       <tr>
-        <th>Usuario</th>
-        <th>Juego</th>
-        <th>Puntaje</th>
+        <th class="col-3">Usuario</th>
+        <th class="col-3">Juego</th>
+        <th class="col-3">Puntaje</th>
+        <th class="col-3">Fecha</th>
       </tr>
     </thead>
     <tbody>
@@ -34,6 +35,9 @@
         <td>
           {{ item.userScore }}
         </td>
+        <td>
+            {{ item.fecha.toDate() | date : "dd/MM/yyyy hh:mm a" }}
+          </td>
       </tr>
     </tbody>
   </table>
