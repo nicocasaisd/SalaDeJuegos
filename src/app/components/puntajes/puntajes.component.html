@@ -1,1 +1,41 @@
-<p>puntajes works!</p>
+<div
+  class="container mt-5 rounded-5 contenedor-principal d-flex flex-column align-items-center justify-content-center"
+>
+  <h1>Puntajes históricos</h1>
+  <div class="my-4">
+    <label class="mx-3" for="juegos-select">Seleccione un juego: </label>
+    <select [(ngModel)]="juegoSeleccionado" id="juegos-select">
+      <option value="ahorcado">Ahorcado</option>
+      <option value="mayor-o-menor">Mayor o Menor</option>
+      <option value="preguntados">Preguntados</option>
+      <option value="wordle">Wordle</option>
+    </select>
+  </div>
+
+  <table class="table table-dark table-striped">
+    <thead class="thead-light">
+      <tr>
+        <th>Usuario</th>
+        <th>Juego</th>
+        <th>Puntaje</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="let item of this.juego.listaDePuntajes"
+        [hidden]="item.nombreDeJuego != this.juegoSeleccionado"
+      >
+        <td>
+          {{ item.loggedUser }}
+        </td>
+        <td>
+          {{ item.nombreDeJuego }}
+        </td>
+        <td>
+          {{ item.userScore }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div></div>
+</div>

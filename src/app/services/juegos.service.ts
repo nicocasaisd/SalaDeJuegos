@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { addDoc, collection, Firestore, Timestamp } from '@angular/fire/firestore';
+import { addDoc, collection, collectionData, Firestore, limit, orderBy, query, Timestamp } from '@angular/fire/firestore';
 import { AuthService } from './auth.service';
 
 @Injectable({
@@ -7,6 +7,7 @@ import { AuthService } from './auth.service';
 })
 export class JuegosService {
   private isModuleLoaded = false;
+  public listaDePuntajes : any[] = [];
 
   constructor(private firestore : Firestore, private auth : AuthService) {}
 
@@ -33,6 +34,19 @@ export class JuegosService {
     })
     .catch(()=>{
       console.error('Error sending message: ');
+    })
+
+  }
+
+  getPuntajes(){
+    const puntajes = collection(this.firestore, 'puntajes');
+
+    const q = query(puntajes, orderBy('userScore', 'desc'), limit(10));
+
+    const observable = collectionData(q);
+    observable.subscribe((res: any[])=>{
+      this.listaDePuntajes = res;
+      console.log(res);
     })
 
   }
