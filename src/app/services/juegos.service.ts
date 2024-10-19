@@ -41,7 +41,7 @@ export class JuegosService {
   getPuntajes(){
     const puntajes = collection(this.firestore, 'puntajes');
 
-    const q = query(puntajes, orderBy('userScore', 'desc'), limit(10));
+    const q = query(puntajes, orderBy('userScore', 'desc'), limit(20));
 
     const observable = collectionData(q);
     observable.subscribe((res: any[])=>{
