@@ -6,6 +6,7 @@ import { ErrorComponent } from './components/error/error.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ChatComponent } from './components/chat/chat.component';
 import { EncuestaComponent } from './components/encuesta/encuesta.component';
+import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
     {path:'', redirectTo: '/home', pathMatch: 'full'},
@@ -13,10 +14,10 @@ export const routes: Routes = [
     {path:'about', component: AboutComponent},
     {path:'login', component: LoginComponent},
     {path:'register', component: RegisterComponent},
-    {path:'chat', component: ChatComponent},
-    {path:'encuesta', component: EncuestaComponent},
+    {path:'chat', component: ChatComponent, canActivate: [authGuard]},
+    {path:'encuesta', component: EncuestaComponent, canActivate: [authGuard]},
     {path:'puntajes', loadComponent: ()=> import('./components/puntajes/puntajes.component').then(c => c.PuntajesComponent)},
-    {path:'juegos', loadChildren: ()=> import('./modules/juegos/juegos.module').then(m => m.JuegosModule)},
+    {path:'juegos', loadChildren: ()=> import('./modules/juegos/juegos.module').then(m => m.JuegosModule), canActivate: [authGuard]},
     {path: '**', component: ErrorComponent},
 
 ];
