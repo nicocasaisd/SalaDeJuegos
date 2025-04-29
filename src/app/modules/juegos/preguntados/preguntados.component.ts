@@ -6,11 +6,12 @@ import { Router } from '@angular/router';
 import { PreguntadosService } from '../../../services/preguntados.service';
 import { Pregunta } from './pregunta.interface';
 import { user } from '@angular/fire/auth';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'; 
 
 @Component({
   selector: 'app-preguntados',
   standalone: true,
-  imports: [BtnSalirComponent, CommonModule],
+  imports: [BtnSalirComponent, CommonModule, MatProgressSpinnerModule],
   templateUrl: './preguntados.component.html',
   styleUrl: './preguntados.component.css',
 })
@@ -26,6 +27,8 @@ export class PreguntadosComponent implements OnInit, OnDestroy {
 
   preguntas!: Pregunta[];
   userScore: number = 0;
+
+  showSpinner = true;
 
   constructor(
     public juego: JuegosService,
@@ -54,6 +57,10 @@ export class PreguntadosComponent implements OnInit, OnDestroy {
 
     this.preguntas = [...this.preguntadosService.getPreguntas()];
     this.loadFirstPregunta();
+    setTimeout(()=>{
+      this.showSpinner = false;
+
+    }, 1500);
   }
 
   ngOnDestroy(): void {
@@ -75,6 +82,7 @@ export class PreguntadosComponent implements OnInit, OnDestroy {
           .getLogotypeByName(this.currentPregunta.name)
           .subscribe((data) => {
             this.currentLogotype = data[0];
+            // this.showSpinner = false;
           });
       }
     }
@@ -87,7 +95,9 @@ export class PreguntadosComponent implements OnInit, OnDestroy {
         this.preguntadosService
           .getLogotypeByName(this.nextPregunta.name)
           .subscribe((data) => {
+            this.showSpinner = false;
             this.nextLogotype = data[0];
+            console.log('Logotipo de pregunta cargado.');
           });
       }
     } else {
@@ -110,9 +120,11 @@ export class PreguntadosComponent implements OnInit, OnDestroy {
       this.userScore++;
       this.loadNextPregunta();
       setTimeout(() => {
+        // this.showSpinner = true;
         this.currentPregunta = this.nextPregunta;
         this.currentLogotype = this.nextLogotype;
-      }, 1000);
+      }, 1500);
+      // this.showSpinner = false;
     } else {
       if (boton) {
         boton.classList.add('btn-loose');

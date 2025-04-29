@@ -21,7 +21,7 @@
             gameWon ? "¡Felicidades! Has ganado." : "Lo siento, has perdido."
           }}
         </p>
-        <p>Puntaje: {{this.userScore}}</p>
+        <p>Puntaje: {{ this.userScore }}</p>
         El juego ha terminado. Desea volver al inicio?
       </div>
 
@@ -45,29 +45,46 @@
       <img
         src="logo-quiz.png"
         alt="Logo Quiz"
-        style="width: 30vw; height: auto; margin-top: 0; margin-bottom: 30px;"
+        style="width: 30vw; height: auto; margin-top: 0; margin-bottom: 30px"
       />
     </div>
+    @if (this.showSpinner) {
+    <div class="card container-pregunta">
+      
+    </div>
+    }
     <div
       *ngIf="!this.gameEnded && this.currentLogotype"
       class="card container-pregunta"
     >
-      <p class="card-header">¿A qué marca corresponde el siguiente logotipo?</p>
-      <div class="container-img">
-        <img src="{{ this.currentLogotype.logo }}" alt="" />
-      </div>
-      <ul class="ul-opciones">
-        <li *ngFor="let item of this.currentPregunta.opciones">
-          <button
-            class="btn-clean"
-            id="{{ item }}"
-            (click)="enviarRespuesta(item)"
-          >
-            {{ item }}
-          </button>
-        </li>
-      </ul>
+      @if(!this.gameEnded){
+        @if(this.showSpinner){
+          <mat-spinner></mat-spinner>
+        } @else {
+          <div class="card container-pregunta">
+            <p class="card-header">
+              ¿A qué marca corresponde el siguiente logotipo?
+            </p>
+            <div class="container-img">
+              <img src="{{ this.currentLogotype.logo }}" alt="" />
+            </div>
+            <ul class="ul-opciones">
+              <li *ngFor="let item of this.currentPregunta.opciones">
+                <button
+                  class="btn-clean"
+                  id="{{ item }}"
+                  (click)="enviarRespuesta(item)"
+                >
+                  {{ item }}
+                </button>
+              </li>
+            </ul>
+          </div>
+        }
+      
+      }
     </div>
+
     <!-- <p>Puntaje: {{ this.userScore }}</p>
     <p>Nombre:{{ this.currentPregunta.name }}</p> -->
   </div>

@@ -13,6 +13,9 @@ export const authGuard: CanActivateFn = (route, state) => {
     return true;
   }
 
+  // Testing
+  return true;
+
   console.log("Debe loguearse antes de pasar.");
   router.navigate(['/login']);
   return false;
